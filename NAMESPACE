@@ -1,0 +1,4 @@
+exportPattern("^[[:alpha:]]+")
+import("rgl")
+importFrom("graphics", "plot", "polygon", "text")
+importFrom("stats", "approx", "smooth.spline", "sd")

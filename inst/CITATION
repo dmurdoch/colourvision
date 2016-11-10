@@ -1,0 +1,9 @@
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(bibtype = "Unpublished",
+         title = "Colour Vision Models: a practical guide, some simulations, and {colourvision} R package",
+         author = person(given="Felipe", middle="Malheiros", family="Gawryszewski"),
+         year = year,
+         note = note,
+         url = "http://eselab.weebly.com")
