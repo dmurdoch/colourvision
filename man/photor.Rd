@@ -19,9 +19,6 @@ Range and interval to calculate the sensitivity curves.
   \item{beta.band}{
 Logical. Whether or not to include a beta-band in the sensitivity curve.}
 }
-\details{
-The original model is available for tetrachromatic animals only. Doris Gomez derived a trichromatic version which is available in softaware AVICOL (Gomez, 2006) and implemented here.
-}
 \value{
 A data frame with first column corresponding to wavelength values and following columns with photoreceptor sensitivity values
 }
@@ -32,7 +29,7 @@ Govardovskii, V. I., N. Fyhrquist, T. Reuter, D. G. Kuzmin, and K. Donner. 2000.
 Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 }
 \seealso{
-\code{\link{CTTKmodel}}, \code{\link{EMmodel}}, \code{\link{RNLmodel}}
+\code{\link{CTTKmodel}}, \code{\link{EMmodel}}, \code{\link{RNLmodel}}, \code{\link{RNLthres}}
 }
 \examples{
 ## Generates photoreceptor sensitivity

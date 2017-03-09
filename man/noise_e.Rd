@@ -3,12 +3,18 @@
 \title{
 Receptor noise}
 \description{
-Receptor noise based on noise-to-signal ratio of a single photoreceptor and the relative abundance of photoreceptor in the retina. This function is used internally in Receptor Noise Limited models.
+Receptor noise either provided by user or based on noise-to-signal ratio of a single photoreceptor and the relative abundance of photoreceptor in the retina. This function is used internally in Receptor Noise Limited models.
 }
 \usage{
-noise_e(v, n)
+noise_e(noise, e, v, n)
 }
 \arguments{
+  \item{noise}{
+Logical. Whether receptor noise is provided (\code{noise = TRUE}) or calculated from photoreceptor relative abundances (\code{noise = FALSE})
+}
+  \item{e}{
+Receptor noise of each photoreceptor type. It is used when \code{noise = TRUE}
+}
   \item{v}{
 Noise-to-signal ratio of a single photoreceptor.
 }
@@ -23,5 +29,5 @@ Vorobyev, M., and D. Osorio. 1998. Receptor noise as a determinant of colour thr
 Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 }
 \seealso{
-\code{\link{RNLmodel}}
+\code{\link{RNLmodel}}, \code{\link{RNLthres}}
 }

@@ -1,18 +1,18 @@
 \name{CTTKmodel}
 \alias{CTTKmodel}
 \title{
-Chittka colour vision models
+Chittka (1992) colour vision models
 }
 \description{
-Chittka trichromatic and tetrachromatic colour vision models.
+Chittka (1992) colour hexagon extended to animals with any number of photoreceptors.
 }
 \usage{
-CTTKmodel(photo=c("tri","tetra"), R, I, Rb, C,
+CTTKmodel(photo=ncol(C)-1, R, I, Rb, C,
           interpolate=TRUE, nm=seq(300,700,1))
 }
 \arguments{
   \item{photo}{
-Trichromatic (\code{"tri"}) or tetrachromatic (\code{"tetra"}) colour vision model.
+Number of photoreceptor types. Model accepts any number of photoreceptor types (\code{>=2}). For instance, dichromatic: \code{photo=2}; trichromatic: \code{photo=3}; tetrachromatic: \code{photo=4}, etc. Default gets number of photoreceptor types from \code{C} argument.
 }
   \item{R}{
 Reflectance of observed objects. A data frame with first column corresponding to wavelength values and following columns with reflectance values. \code{R} must be in the same scale as \code{Rb} (percentage or proportion).
@@ -33,30 +33,36 @@ A sequence of numeric values specifying where interpolation is to take place. Se
 
 }
 \details{
-The original model is available for trichromatic animals only. Thery and Casas (2002) derived a version for tetrachromatic animals which is implemented here. Photoreceptor outputs (\eqn{Ei}{E_i}) are calculated by:
+The original model is available for trichromatic animals only. Thery and Casas (2002) derived a version for tetrachromatic animals which is implemented here. In \code{colourvision}, the model was extended to any number of photoreceptors based on Pike (2012) formula. The colour hexagon in Chittka (1992) has a vector of length = 1.0 The chromaticity coordinates in \code{colourvision} preserve the same vector length.
+
+Photoreceptor outputs (\eqn{E_i}{Ei}) are calculated by:
 \deqn{E_i = \frac{q_i}{q_i+1}}{Ei = qi/(qi+1)}
-where \eqn{qi}{q_i} is given by \code{\link{Qr}}. Then, for thrichromatic vision, coordinates in the colour space are found by (Chittka 1992):
-\deqn{x = \frac{\sqrt{3}}{2}(E_3-E_1)}{x = (sqrt(3)/2)*(E3-E1)}
-\deqn{y = E_2-\frac{1}{2}(E_1+E_3)}{y = E2-0.5*(E1+E3)}
-And for tetrachromatic vision (Thery and Casas 2002):
-\deqn{x = \frac{\sqrt{3}\sqrt{2}}{3}(E_3-E_4)}{x = ((sqrt(3)*sqrt(2))/3)*(E3-E4)}
-\deqn{y = E_1-\frac{1}{3}(E_2+E_3+E_4)}{y = E1-(1/3)*(E2+E3+E4)}
-\deqn{z = \frac{2\sqrt{2}}{3}(\frac{1}{2}(E_3+E_4)-E_2)}{z = (2*sqrt(2)/3)*(0.5*(E3+E4)-E2)}
+where \eqn{q_i}{qi} is given by \code{\link{Qr}}.
+
+Then, for thrichromatic vision, coordinates in the colour space are found by (Chittka 1992):
+\deqn{X_1 = \frac{\sqrt{3}}{2}(E_3-E_1)}{X1 = (sqrt(3)/2)*(E3-E1)}
+\deqn{X_2 = E_2-\frac{1}{2}(E_1+E_3)}{X2 = E2-0.5*(E1+E3)}
+For tetrachromatic vision (Thery and Casas 2002):
+\deqn{X_1 = \frac{\sqrt{3}\sqrt{2}}{3}(E_3-E_4)}{X1 = ((sqrt(3)*sqrt(2))/3)*(E3-E4)}
+\deqn{X_2 = E_1-\frac{1}{3}(E_2+E_3+E_4)}{X2 = E1-(1/3)*(E2+E3+E4)}
+\deqn{X_3 = \frac{2\sqrt{2}}{3}(\frac{1}{2}(E_3+E_4)-E_2)}{X3 = (2*sqrt(2)/3)*(0.5*(E3+E4)-E2)}
+Then, for a pentachromatic animal following the same vector length:
+\deqn{X_1 = \frac{5}{2\sqrt{2}\sqrt{5}}(E_2-E_1)}{X1 = (5/(2*sqrt(2)*sqrt(5)))*(E2-E1)}
+\deqn{X_2 = \frac{5\sqrt{2}}{2\sqrt{3}\sqrt{5}}(E_3-\frac{E_1+E_2}{2})}{X2 = (5*sqrt(2)/(2*sqrt(3)*sqrt(5)))*(E3-(E1+E2)/2)}
+\deqn{X_3 = \frac{5\sqrt{3}}{4\sqrt{5}}(E_4-\frac{E_1+E_2+E_3}{3})}{X3 = (5*sqrt(3)/(4*sqrt(5)))*(E4-(E1+E2+E3)/3)}
+\deqn{X_4 = E_5-\frac{E1+E2+E3+E4}{4}}{X4 = E5-(E1+E2+E3+E4)/4}
+
 }
 \value{
-for trichromats:
-\item{P1,P2,P3}{Photoreceptor quantum-catches values after the von Kries transformation (see function \code{\link{Qr}}).}
-\item{E1,E2,E3}{Photoreceptor excitation values. Values can vary from 0 to 1.}
-\item{x,y}{Coordinates in the animal colour space. See \code{\link{CTTKhexagon}}.}
-\item{deltaSo}{Euclidian distance to the origin of the colour space. It represents the conspicouness of the stimulus (\code{R}) in relation to the background (\code{Rb}).}
-for tetrachromats:
-\item{P1,P2,P3,P4}{Photoreceptor quantum-catches values after the von Kries transformation (see function \code{\link{Qr}}).}
-\item{E1,E2,E3,E4}{Photoreceptor excitation values. Values can vary from 0 to 1.}
-\item{x,y,z}{Coordinates in the animal colour space. See \code{\link{CTTKhexagon3D}}.}
-\item{deltaSo}{Euclidian distance to the origin of the colour space. It represents the conspicouness of the stimulus (\code{R}) in relation to the background (\code{Rb}).}
+\item{Qri}{Photoreceptor photon catch values after the von Kries transformation (see function \code{\link{Qr}}).}
+\item{Ei}{Photoreceptor output values. Values can vary from 0 to 1.}
+\item{Xi}{Coordinates in the colour space.}
+\item{deltaS}{Euclidian distance to the origin of the colour space. It represents the conspicouness of the stimulus (\code{R}) in relation to the background (\code{Rb}).}
 }
 \references{
 Chittka, L. 1992. The colour hexagon: a chromaticity diagram based on photoreceptor excitations as a generalized representation of colour opponency. J Comp Physiol A 170:533-543.
+
+Pike, T.W. 2012. Generalised chromaticity diagrams for animals with n-chromatic colour vision. Journal of Insect Behavior 255: 277-286.
 
 Thery, M., and J. Casas. 2002. Predator and prey views of spider camouflage. Nature 415:133-133.
 }
@@ -83,6 +89,9 @@ data("D65")
 R<-logistic(x=seq(300,700,1), x0=500, L=50, k=0.04)
 
 ## Run model 
-CTTKmodel(photo="tri", R=R, I=D65,
+model<-CTTKmodel(photo=3, R=R, I=D65,
     Rb=Rb, C=C)
+ 
+#plot   
+plot(model)
 }

@@ -1,0 +1,21 @@
+colourvision v1.0
+=================
+1. Colour vision models have been extendent to accept any number of photoreceptor types (>=2).
+
+2. Updated the trichromatic version of EMmodel, and the EMtriangle. The colour space is now built with a vector length = 0.75 to match the tetrahedron proposed by Endler and Mielke (2005). Doris Gomez derived a trichromatic version which is available in softaware AVICOL, and was previously implemented here (colouvision v0.1).
+
+3. New function 'RNLthres' for colour thresholds based on receptor noise (Vorobyev and Osorio 1998).
+
+4. 'RNLmodel' has a new argument ('R2') to be compared against R1 values (former 'R' argument).
+
+5. Updated photon catch ('Q') calculation to give correct values when interval != 1. This change does not affect model results.
+
+6. 'noise_e' function has been uptaded.
+
+7. 'CTTKhexagon' and 'EMtriangle' are more flexible, and allow other arguments to be passed to the 'plot' function.
+
+8. 'CTTKhexagon3D' and 'EMtetrahedron' are more flexible, and allow other arguments to be passed to the 'plot3d' function.
+
+9. Fixed a bug in 'photor' when using 'beta.band=TRUE'.
+
+10. Added 'methods' to 'plot' and 'plot3d' generics.

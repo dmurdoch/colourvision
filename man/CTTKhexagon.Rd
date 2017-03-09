@@ -6,12 +6,25 @@ Chittka (1992) colour hexagon}
 Plots Chittka (1992) colour hexagon for trichromatic animals.
 }
 \usage{
-CTTKhexagon(vnames=TRUE)
+CTTKhexagon(x, y,
+            vnames=c(expression(E[1]),expression(E[2]),expression(E[3])),
+            pch=16, bty="n", yaxt="n",xaxt="n", col="black",
+            ylim=c(-1.2,1.2), xlim=c(-1.2,1.2), asp=1, ann=FALSE, ...)
 }
 \arguments{
-  \item{vnames}{
-Whether vector names should be plotted.
-}
+  \item{vnames}{Vector names.}
+  \item{x}{x-coordinate}
+  \item{y}{y-coordinate}
+  \item{pch}{see \code{\link{par}} function.}
+  \item{bty}{see \code{\link{par}} function.}
+  \item{yaxt}{see \code{\link{par}} function.}
+  \item{xaxt}{see \code{\link{par}} function.}
+  \item{col}{see \code{\link{par}} function.}
+  \item{ylim}{see \code{\link{plot}} function.}
+  \item{xlim}{see \code{\link{plot}} function.}
+  \item{asp}{see \code{\link{plot}} function.}
+  \item{ann}{see \code{\link{par}} function.}
+  \item{...}{Other arguments passed to \code{\link{plot}} function.}
 
 }
 \references{
@@ -45,6 +58,5 @@ model<-CTTKmodel(photo="tri", R=R, I=D65, Rb=Rb,
 C=bee)
 
 ##plot data in the colour space
-CTTKhexagon()
-points(x=model$x, y=model$y)
+CTTKhexagon(x=model[,"X1"], y=model[,"X2"])
 }

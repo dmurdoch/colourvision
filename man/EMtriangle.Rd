@@ -1,24 +1,39 @@
 \name{EMtriangle}
 \alias{EMtriangle}
 \title{
-Endler and Mielke triangle colour space
+Endler and Mielke (2005) triangle colour space
 }
 \description{
 Plots a triangle colour space for trichromatic Endler and Mielke (2005) colour vision models.
 }
 \usage{
-EMtriangle(ylim = c(-0.8, 0.8), xlim = c(-0.8, 0.8), vnames=TRUE)
+EMtriangle(x, y, vnames=c("u","s","m"),
+           ylim=c(-0.9,0.9), xlim=c(-0.9,0.9),
+           pch=16, bty="n",yaxt="n",xaxt="n",
+           col="black", asp=1, ann=FALSE, ...)
 }
 \arguments{
-  \item{xlim, ylim}{x and y limits.}
-  \item{vnames}{
-Whether vector names should be plotted.}
+  \item{vnames}{Vector names}
+  \item{x}{x-coordinate}
+  \item{y}{y-coordinate}
+  \item{ylim}{see \code{\link{plot}} function.}
+  \item{xlim}{see \code{\link{plot}} function.}
+  \item{pch}{see \code{\link{par}} function.}
+  \item{bty}{see \code{\link{par}} function.}
+  \item{yaxt}{see \code{\link{par}} function.}
+  \item{xaxt}{see \code{\link{par}} function.}
+  \item{col}{see \code{\link{par}} function.}
+  \item{asp}{see \code{\link{plot}} function.}
+  \item{ann}{see \code{\link{par}} function.}
+  \item{...}{Other arguments passed to \code{\link{plot}}.}   
 }
 \details{
-The original model is available for tetrachromatic animals only. Doris Gomez derived a trichromatic version which is available in softaware AVICOL (Gomez, 2006) and implemented here.
+The original model is available for tetrachromatic animals only. Trichromatic version is implemented in \code{colourvision} based on Pike (2012) formula. The triangle is built with a vector length = 0.75 to match the tetrahedron proposed by Endler and Mielke (2005). Doris Gomez derived a trichromatic version which is available in softaware AVICOL (Gomez, 2006) and was previously implemented here (\code{colouvision v0.1}), but was removed because the triangle does not have a size compatiple with the tetrahedron.
 }
 \references{
 Endler, J. A., and P. Mielke. 2005. Comparing entire colour patterns as birds see them. Biol J Linn Soc 86:405-431.
+
+Pike, T.W. 2012. Generalised chromaticity diagrams for animals with n-chromatic colour vision. Journal of Insect Behavior 255: 277-286.
 
 Gomez, D. 2006. AVICOL, a program to analyse spectrometric data. Last update october 2011. Free executable available at:\cr
 \url{http://sites.google.com/site/avicolprogram/}  or from the author at \email{dodogomez@yahoo.fr}
@@ -30,6 +45,5 @@ Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 \code{\link{EMtetrahedron}},  \code{\link{EMmodel}}
 }
 \examples{
-EMtriangle()
-points(x=0,y=0, pch=16, col="red")
+EMtriangle(x=0,y=0, pch=16, col="red")
 }

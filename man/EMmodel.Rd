@@ -1,19 +1,18 @@
 \name{EMmodel}
 \alias{EMmodel}
 \title{
-Endler and Mielke colour vision model
+Endler and Mielke (2005) colour vision model
 }
 \description{
-Endler and Mielke trichromatic and tetrachromatic colour vision models.
+Endler and Mielke (2005) colour vision model extended to animals with any number of photoreceptors.
 }
 \usage{
-EMmodel(photo = c("tri", "tetra"), R, I, Rb, C,
+EMmodel(photo = ncol(C)-1, R, I, Rb, C,
         interpolate=TRUE, nm=seq(300,700,1))
 }
 \arguments{
   \item{photo}{
-Trichromatic (\code{"tri"}) or tetrachromatic (\code{"tetra"}) colour vision model.
-}
+Number of photoreceptor types. Model accepts any number of photoreceptor types (\code{>=2}). For instance, dichromatic: \code{photo=2}; trichromatic: \code{photo=3}; tetrachromatic: \code{photo=4}, etc. Default gets number of photoreceptor types from \code{C} argument.}
   \item{R}{
 Reflectance of observed objects. A data frame with first column corresponding to wavelength values and following columns with reflectance values. \code{R} must be in the same scale as \code{Rb} (percentage or proportion).
 }
@@ -33,36 +32,37 @@ A sequence of numeric values specifying where interpolation is to take place. Se
 
 }
 \details{
-The original model is available for tetrachromatic animals only. Doris Gomez derived a trichromatic version which is available in software AVICOL (Gomez, 2006) and implemented here. First, relative quantum catches are log-transformed:
+The original model is available for tetrachromatic animals only. In \code{colourvision}, the model was extended to any number of photoreceptors based on Pike (2012) formula.
+
+First, relative quantum catches are log-transformed:
 \deqn{f_{i} = \ln{q_i}}{fi = ln(qi)}
-where \eqn{q_i}{qi} is the relative quantum catch of photoreceptor type i, given by \code{\link{Qr}}. The model uses only relative output values, so that photoreceptor outputs (u,s,m for thrichromats and u,s,m,l for tetrachromats) are given by:
-\deqn{\{u,s,m,l\} = \frac{f_i}{\sum_{i=1}^n f_i}}{{u,s,m,l} = fi'/sum(f1+f2+f3...)}
-Then, for thrichromatic vision, coordinates in the colour space are found by (Gomez 2006):
-\deqn{x = \frac{\sqrt{3}}{3}(m-u)}{x = (sqrt(3)/3)*(m-u)}
-\deqn{y = \frac{2}{3}(s-\frac{1}{2}(u+m))}{y = (2/3)*(s-0.5*(u+m))}
-And for tetrachromatic vision (Endler and Mielke 2005):
-\deqn{x = \sqrt{\frac{3}{2}}(\frac{1-2s-m-u}{2})}{x = sqrt(3/2)*((1-2s-m-u)/2)}
-\deqn{y = \frac{-1+3m+u}{2\sqrt{2}}}{y = (-1+3m+u)/2*sqrt(2)}
-\deqn{z = u-\frac{1}{4}}{z = u-0.25}
+where \eqn{q_i}{qi} is the relative quantum catch of photoreceptor type i, given by \code{\link{Qr}}. The model uses only relative output values, so that photoreceptor outputs are given by:
+\deqn{E_i = \frac{f_i}{\sum_{i=1}^n f_i}}{Ei = fi/sum(f1+f2+f3+...fn)}
+
+For tetrachromatic vision (Endler and Mielke 2005):
+\deqn{X1 = \sqrt{\frac{3}{2}}(\frac{1-2E_2-E_3-E_1}{2})}{X1 = sqrt(3/2)*((1-2*E2-E3-E1)/2)}
+\deqn{X2 = \frac{-1+3E_3+E_1}{2\sqrt{2}}}{X2 = (-1+3*E3+E1)/2*sqrt(2)}
+\deqn{X3 = E_1-\frac{1}{4}}{X3 = E1-0.25}
+
+Tetrachromatic chromaticity diagram (tetrahedron) in Endler and Mielke (2005) has a vector of length = 0.75. The chromaticity coordinates in \code{colourvision} preserve the same vector length. 
+
+For instance, for dichromatic vision coordinate (X1) in the colour space is found by:
+\deqn{X1 = \frac{3}{4}(E_2-E_1)}{X1 = (3/4)*(E2-E1)}
+Whereas for thrichromatic vision coordinates (X1 and X2) are found by:
+\deqn{X1 = \frac{3\sqrt{3}}{8}(E_2-E_1)}{X1 = (3*sqrt(3)/8)*(E2-E1)}
+\deqn{X2 = \frac{3}{4}(E_3-\frac{E_2+E_1}{2})}{X2 = (3/4)*(E3-(E2+E1)/2)}
 }
 
 \value{
-for trichromats:
-\item{f1,f2,f3}{Photoreceptor quantum-catches values after the von Kries transformation (see function \code{\link{Qr}} and the log-transformation.}
-\item{u,s,m}{Photoreceptor output values.}
-\item{x,y}{Coordinates in the animal colour space. See function \code{\link{EMtriangle}}}
-\item{deltaSo}{Euclidian distance to the origin of the colour space. It represents the conspicouness of the stimulus (\code{R}) in relation to the background (\code{Rb}).}
-for tetrachromats:
-\item{f1,f2,f3,f4}{Photoreceptor quantum-catches values after the von Kries transformation (see function \code{\link{Qr}}.}
-\item{u,s,m,l}{Photoreceptor output values.}
-\item{x,y,z}{Coordinates in the animal colour space. See function \code{\link{EMtetrahedron}}}
-\item{deltaSo}{Euclidian distance to the origin of the colour space. It represents the conspicouness of the stimulus (\code{R}) in relation to the background (\code{Rb}).}
+\item{Qri}{Photoreceptor photon catch values after the von Kries transformation (see function \code{\link{Qr}}).}
+\item{Ei}{Photoreceptor outputs after convertion to relative values.}
+\item{Xi}{Coordinates in the colour space.}
+\item{deltaS}{Euclidian distance to the origin of the colour space. It represents the conspicouness of the stimulus (\code{R}) in relation to the background (\code{Rb}). Maximum value is 0.75}
 }
 \references{
 Endler, J. A., and P. Mielke. 2005. Comparing entire colour patterns as birds see them. Biol J Linn Soc 86:405-431.
 
-Gomez, D. 2006. AVICOL, a program to analyse spectrometric data. Last update october 2011. Free executable available at:\cr
-\url{http://sites.google.com/site/avicolprogram/}  or from the author at \email{dodogomez@yahoo.fr}
+Pike, T.W. 2012. Generalised chromaticity diagrams for animals with n-chromatic colour vision. Journal of Insect Behavior 255: 277-286.
 }
 \author{
 Felipe M. Gawryszewski \email{f.gawry@gmail.com}
@@ -91,6 +91,8 @@ R[,2]<-R[,2]+10
 R[,3]<-R[,3]+10
 
 ## Run model 
-EMmodel(photo="tri",
+model<-EMmodel(photo=3,
        R=R, I=D65, Rb=Rb, C=C)
+
+plot(model)
 }

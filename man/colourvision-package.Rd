@@ -20,7 +20,7 @@ The DESCRIPTION file:
 Maintainer: \packageMaintainer{colourvision}
 }
 \references{
-Gawryszewski, F.M. 2016. Colour vision models: a practical guide, some simulations, and colourvision R package. In prep.
+Gawryszewski, F.M. 2017. Colour vision models: a practical guide, some simulations, and colourvision R package. bioRiv, \doi{10.1101/103754}
 }
 \keyword{ package }
 \examples{
@@ -45,6 +45,5 @@ model<-CTTKmodel(photo="tri", R=R, I=D65, Rb=Rb,
 C=bee)
 
 ##plot data in the colour space
-CTTKhexagon()
-points(x=model$x, y=model$y)
+plot(model)
 }
