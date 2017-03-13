@@ -1,21 +1,23 @@
 \name{colour_space}
 \alias{colour_space}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 N-dimensional colour spaces
 }
 \description{
 Generates a colour space based on any number of photorecptor types and finds a colour loci for a given photoreceptor output.}
 \usage{
-colour_space(n, length, q)
+colour_space(n, type="length", length=NA, edge=NA, q=rep(1,n))
 }
 \arguments{
   \item{n}{Number of photoreceptor types. Function accepts any number of photoreceptor types >=3. For instance, trichromatic: \code{n=3}; tetrachromatic: \code{n=4}, etc.
 }
-  \item{length}{Vector length used to construct the colour space. Typically \code{length=1}}
+  \item{type}{Whether the colour space should be built with a fixed vector length (\code{type="length"}), or a fixed distance between vertices (\code{type="edge"}; e.g. Pike 2012 and Renoult et al. 2015).
+}
+  \item{length}{Vector length used to construct the colour space. Used when \code{type="length"}. Typically \code{length=1}.}
+  \item{edge}{Edge length used to construct the colour space. Used when \code{type="edge"}.}
   \item{q}{Photoreceptor output values}
 }
-\details{Based on Pike (2012), but with a fixed vector length, instead of fixed edge length. This function is used internally in colour vision models.
+\details{Based on Pike (2012). This function is used internally in colour vision models.
 }
 \value{
 A list with the following dimentions:
@@ -23,7 +25,10 @@ A list with the following dimentions:
 \item{vector_matrix}{Coordinates of colour space vertices}
 }
 \references{
-Pike, T.W. 2012. Generalised chromaticity diagrams for animals with n-chromatic colour vision. Journal of Insect Behavior 255: 277-286.}
+Pike, T.W. 2012. Generalised chromaticity diagrams for animals with n-chromatic colour vision. Journal of Insect Behavior 255: 277-286.
+
+Renoult, J. P., A. Kelber, and H. M. Schaefer. 2015. Colour spaces in ecology and evolutionary biology. Biol Rev Camb Philos Soc, doi: 10.1111/brv.12230.
+}
 \author{
 Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 }
@@ -32,7 +37,7 @@ Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 }
 
 \examples{
-#A trichromatic colour space based on Endler and Mielke (2005)
+#A trichromatic colour space based on Endler and Mielke (2005) with a fixed vector length.
 tri<-colour_space(n=3, length=0.75, q=c(0.5,0.2,0.3))
 
 #showing:

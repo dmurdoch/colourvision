@@ -7,12 +7,14 @@ Endler and Mielke (2005) colour vision model
 Endler and Mielke (2005) colour vision model extended to animals with any number of photoreceptors.
 }
 \usage{
-EMmodel(photo = ncol(C)-1, R, I, Rb, C,
+EMmodel(photo = ncol(C)-1, type="length", R, I, Rb, C,
         interpolate=TRUE, nm=seq(300,700,1))
 }
 \arguments{
   \item{photo}{
 Number of photoreceptor types. Model accepts any number of photoreceptor types (\code{>=2}). For instance, dichromatic: \code{photo=2}; trichromatic: \code{photo=3}; tetrachromatic: \code{photo=4}, etc. Default gets number of photoreceptor types from \code{C} argument.}
+  \item{type}{Whether the colour space should be built with a fixed vector length (\code{type="length"}), or a fixed edge length (distance between vertices; \code{type="edge")}.
+}
   \item{R}{
 Reflectance of observed objects. A data frame with first column corresponding to wavelength values and following columns with reflectance values. \code{R} must be in the same scale as \code{Rb} (percentage or proportion).
 }
@@ -29,7 +31,6 @@ Photoreceptor sensitivity curves, from lowest to longest lambda-max. A data fram
 Whether data files should be interpolated before further calculations. See \code{\link{approx}}.}
   \item{nm}{
 A sequence of numeric values specifying where interpolation is to take place. See \code{\link{approx}}.}
-
 }
 \details{
 The original model is available for tetrachromatic animals only. In \code{colourvision}, the model was extended to any number of photoreceptors based on Pike (2012) formula.
@@ -44,9 +45,9 @@ For tetrachromatic vision (Endler and Mielke 2005):
 \deqn{X2 = \frac{-1+3E_3+E_1}{2\sqrt{2}}}{X2 = (-1+3*E3+E1)/2*sqrt(2)}
 \deqn{X3 = E_1-\frac{1}{4}}{X3 = E1-0.25}
 
-Tetrachromatic chromaticity diagram (tetrahedron) in Endler and Mielke (2005) has a vector of length = 0.75. The chromaticity coordinates in \code{colourvision} preserve the same vector length. 
+Tetrachromatic chromaticity diagram (tetrahedron) in Endler and Mielke (2005) has a vector of length = 0.75 and and edge length = sqrt(3/2). The chromaticity coordinates for other colour spaces may preserve either the same vector length or edge length. 
 
-For instance, for dichromatic vision coordinate (X1) in the colour space is found by:
+For instance, for dichromatic vision coordinate (X1) in the colour space preserving the same vector length is found by:
 \deqn{X1 = \frac{3}{4}(E_2-E_1)}{X1 = (3/4)*(E2-E1)}
 Whereas for thrichromatic vision coordinates (X1 and X2) are found by:
 \deqn{X1 = \frac{3\sqrt{3}}{8}(E_2-E_1)}{X1 = (3*sqrt(3)/8)*(E2-E1)}
@@ -91,7 +92,7 @@ R[,2]<-R[,2]+10
 R[,3]<-R[,3]+10
 
 ## Run model 
-model<-EMmodel(photo=3,
+model<-EMmodel(photo=3, type="edge",
        R=R, I=D65, Rb=Rb, C=C)
 
 plot(model)

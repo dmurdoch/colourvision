@@ -7,15 +7,16 @@ Endler and Mielke (2005) triangle colour space
 Plots a triangle colour space for trichromatic Endler and Mielke (2005) colour vision models.
 }
 \usage{
-EMtriangle(x, y, vnames=c("u","s","m"),
+EMtriangle(x, y, type=c("length","edge"), vnames=c("u","s","m"),
            ylim=c(-0.9,0.9), xlim=c(-0.9,0.9),
            pch=16, bty="n",yaxt="n",xaxt="n",
            col="black", asp=1, ann=FALSE, ...)
 }
 \arguments{
-  \item{vnames}{Vector names}
   \item{x}{x-coordinate}
   \item{y}{y-coordinate}
+  \item{type}{Whether the colour space should be built with a fixed vector length, or a fixed edge length (distance between vertices).}
+  \item{vnames}{Vector names}
   \item{ylim}{see \code{\link{plot}} function.}
   \item{xlim}{see \code{\link{plot}} function.}
   \item{pch}{see \code{\link{par}} function.}
@@ -28,7 +29,7 @@ EMtriangle(x, y, vnames=c("u","s","m"),
   \item{...}{Other arguments passed to \code{\link{plot}}.}   
 }
 \details{
-The original model is available for tetrachromatic animals only. Trichromatic version is implemented in \code{colourvision} based on Pike (2012) formula. The triangle is built with a vector length = 0.75 to match the tetrahedron proposed by Endler and Mielke (2005). Doris Gomez derived a trichromatic version which is available in softaware AVICOL (Gomez, 2006) and was previously implemented here (\code{colouvision v0.1}), but was removed because the triangle does not have a size compatiple with the tetrahedron.
+The original model is available for tetrachromatic animals only. Trichromatic version is implemented in \code{colourvision} based on Pike (2012) formula. The triangle is built either with a vector length = 0.75 or a edge length = sqrt(3/2), to match the tetrahedron proposed by Endler and Mielke (2005). Doris Gomez derived a trichromatic version which is available in softaware AVICOL (Gomez, 2006) and was previously implemented here (\code{colouvision v0.1}), but was removed because the triangle does not have a size compatiple with the tetrahedron.
 }
 \references{
 Endler, J. A., and P. Mielke. 2005. Comparing entire colour patterns as birds see them. Biol J Linn Soc 86:405-431.

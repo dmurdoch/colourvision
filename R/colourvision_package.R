@@ -106,31 +106,45 @@ Qr <- function(R, I, Rb, C, interpolate, nm) {
   return(r)
 }
 
-colour_space<-function(n, length, q) {
-  v1<-vector(length=n-1)
-  v1[[n-1]]<- -1/(n-1)
-  for (i in (length(v1)-1):1) {
-    v1[[i]]<--sqrt(1-sum(v1[(i+1):length(v1)]^2))/(i)
-  }
+colour_space<-function(n, type="length", length=NA, edge=NA, q=rep(1,n)) {
   
-  #vector rotation
-  v<-matrix(data=1, ncol=n-1, nrow=n-1)
-  v[1,1]<--1
-  for (i in 2:ncol(v)) {
-    v[i,i]<-v[i-1,i-1]-1
-  }
-  
-  for (i in 1:(ncol(v)-1)) {
-    for (k in (i+1):nrow(v)) {
-      v[k,i]<-0
+  vector_matrix<-function(n, length) {
+    v1<-vector(length=n-1)
+    v1[[n-1]]<- -1/(n-1)
+    for (i in (length(v1)-1):1) {
+      v1[[i]]<--sqrt(1-sum(v1[(i+1):length(v1)]^2))/(i)
     }
+    
+    #vector rotation
+    v<-matrix(data=1, ncol=n-1, nrow=n-1)
+    v[1,1]<--1
+    for (i in 2:ncol(v)) {
+      v[i,i]<-v[i-1,i-1]-1
+    }
+    
+    for (i in 1:(ncol(v)-1)) {
+      for (k in (i+1):nrow(v)) {
+        v[k,i]<-0
+      }
+    }
+    
+    for (i in 1:nrow(v)) {
+      v[i,]<-v[i,]*v1
+    }
+    v<-rbind(v1,v)
+    v<-v*length
+    return(v)
   }
   
-  for (i in 1:nrow(v)) {
-    v[i,]<-v[i,]*v1
+  if (type=="length") {
+    v<-vector_matrix(n=n,length=length)
   }
-  v<-rbind(v1,v)
-  v<-v*length
+
+  if (type=="edge") {
+    v1<-vector_matrix(n=n,length=1)
+    v1_edge<-sqrt(sum((v1[1,]-v1[2,])^2))
+    v<-vector_matrix(n=n,length=(edge/v1_edge))
+  }
   
   col.names<-vector(length=ncol(v))
   for (i in 1:ncol(v)) {
@@ -142,7 +156,7 @@ colour_space<-function(n, length, q) {
   }
   rownames(v)<-row.names
   colnames(v)<-col.names
-  
+    
   X<-vector(length=(n-1))
   for (i in 1:(n-1)) {
     X[[n-i]]<-v[n+1-i,n-i] * (q[[n+1-i]] - sum(q[1:(n-i)])/(n-i) ) 
@@ -153,11 +167,11 @@ colour_space<-function(n, length, q) {
   r[[1]]<-X
   r[[2]]<-v
   names(r)<-c("coordinates", "vector_matrix")
-  class(r)<-"colourvision"
   return(r)
 }
 
 EMmodel <- function (photo=ncol(C)-1,
+                     type="length",
                      R,
                      I,
                      Rb,
@@ -200,7 +214,12 @@ EMmodel <- function (photo=ncol(C)-1,
     E<-S.log/sum(S.log)
 
     if(photo1==2) {
-      x <- (3/4)*(E[[2]]-E[[1]])
+      if (type == "length") {
+        x <- (3/4)*(E[[2]]-E[[1]])
+      }
+      if (type == "edge") {
+        x <- (sqrt(3/2)/2)*(E[[2]]-E[[1]])
+      }
       
       deltaSo<-abs(x)
       
@@ -232,7 +251,7 @@ EMmodel <- function (photo=ncol(C)-1,
     
     if(photo1==3 || photo1>4) {
       
-      r<-colour_space(n=photo1, length=0.75, q=E)      
+      r<-colour_space(type=type, n=photo1, length=0.75, edge=sqrt(3/2), q=E)      
       r<-c(S, E, r$coordinates, sqrt(sum(r$coordinates^2)))
       
     }
@@ -273,6 +292,7 @@ EMmodel <- function (photo=ncol(C)-1,
   
   class(r)<-c("colourvision", "data.frame")
   attr(r, "model_name") <- "Endler and Mielke model"
+  attr(r, "type") <- type
   attr(r, "n_photor_types") <- photo1
   attr(r, "Rb") <- Rb
   attr(r, "I") <- I
@@ -443,7 +463,7 @@ RNLmodel <- function (model = c("linear", "log"), photo=ncol(C)-1,
     q_numerator<-q_numerator^2
     
     #numerator
-    numerator<-sum(noise_numerator*q_numerator[photo1:1])
+    numerator<-sum(noise_numerator*q_numerator[length(q_numerator):1])
     
     #noise denominatior
     noise_denominator<-combn(noise_values,(photo1-1))
@@ -587,7 +607,7 @@ CTTKmodel <- function (photo=ncol(C)-1,
 
     if(photo1>4) {
       
-      r<-colour_space(n=photo1, length=1, q=E)      
+      r<-colour_space(type="length", n=photo1, length=1, edge=NA, q=E)      
       r<-c(P, E, r$coordinates, sqrt(sum(r$coordinates^2)))
       
     }
@@ -753,7 +773,7 @@ CTTKhexagon3D<- function (x, y, z, s.col = "red", f.col = "black", vnames = c("E
 
 
 
-EMtriangle <- function (x, y, vnames=c("u","s","m"),
+EMtriangle <- function (x, y, type=c("length","edge"), vnames=c("u","s","m"),
                         ylim=c(-0.9,0.9),
                         xlim=c(-0.9,0.9),
                         pch=16, bty="n",yaxt="n",xaxt="n",
@@ -762,11 +782,18 @@ EMtriangle <- function (x, y, vnames=c("u","s","m"),
   graphics::plot(x=x,y=y, pch=pch, bty=bty,yaxt=yaxt,xaxt=xaxt, col=col,
        ylim=ylim, xlim=xlim, asp=asp, ann=ann, ...)
 
-  #vertices
+  
+  if (type=="length") {
   u<-c(-0.6495191, -0.3750000)
   s<-c(0.6495191, -0.3750000)
   m<-c(0.00, 0.75)
-
+  }
+  if (type=="edge") {
+    u<-c(-0.6123724, -0.3535534)
+    s<-c(0.6123724, -0.3535534)
+    m<-c(0.00, 0.7071068)
+  }
+    
     graphics::polygon(x=c(u[[1]],s[[1]],m[[1]]),
                       y=c(u[[2]],s[[2]],m[[2]]))
     
@@ -986,20 +1013,22 @@ plot.colourvision <- function (x, ...) {
   }
   if (model=="Endler and Mielke model") {
     if (photo1==3) {
-      EMtriangle(x=x[,"X1"],y=x[,"X2"], ...)
+      EMtriangle(x=x[,"X1"],y=x[,"X2"], type=attributes(x)$type, ...)
     }
     if (photo1==2) {
-      plot(x=x[,"X1"],y=rep(0, length(x[,"X1"])), ylim=c(-0.75,0.75),xlim=c(-0.75,0.75),
+      if (attributes(x)$type=="length") {v.length<-0.75}
+      if (attributes(x)$type=="edge") {v.length<-sqrt(3/2)}
+      plot(x=x[,"X1"],y=rep(0, length(x[,"X1"])), ylim=c(-v.length,v.length),xlim=c(-v.length,v.length),
            ann=FALSE, axes = FALSE, xlab="x",
            panel.first=c(
-             segments(x0=0,x1=0.75,y0=0,y1=0),
-             segments(x0=0,x1=-0.75,y0=0,y1=0),
-             segments(x0=0.75,x1=0.75,y0=-0.03,y1=0.03),
-             segments(x0=-0.75,x1=-0.75,y0=-0.03,y1=0.03),
+             segments(x0=0,x1=v.length,y0=0,y1=0),
+             segments(x0=0,x1=-v.length,y0=0,y1=0),
+             segments(x0=v.length,x1=v.length,y0=-0.05*v.length,y1=0.05*v.length),
+             segments(x0=-v.length,x1=-v.length,y0=-0.05*v.length,y1=0.05*v.length),
              points(x=0,y=0,pch=4)), ...)
+      }
     }     
-  }
-  
+
   if (model=="Receptor noise limited model") {
     if (photo1==3) {
       plot(x=x[,"X1_R1"],y=x[,"X2_R1"],

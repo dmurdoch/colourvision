@@ -1,3 +1,10 @@
+colourvision v1.1
+=================
+1. Fixed a bug in RNLmodel that miscalculated deltaS values for animals with > 4 photoreceptors types.
+
+2. Updated 'colour_space', 'EMmodel' and 'EMtriangle' to accommodate vector matrixes for colour spaces with a fixed edge length.
+
+
 colourvision v1.0
 =================
 1. Colour vision models have been extendent to accept any number of photoreceptor types (>=2).
