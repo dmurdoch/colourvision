@@ -3,29 +3,32 @@
 \title{
 Chittka (1992) colour hexagon}
 \description{
-Plots Chittka (1992) colour hexagon for trichromatic animals.
+Plots Chittka (1992) colour hexagon for trichromatic animals and a line plot for dichromatic animals.
 }
 \usage{
-CTTKhexagon(x, y,
+CTTKhexagon(x, y, photo=3,
             vnames=c(expression(E[1]),expression(E[2]),expression(E[3])),
             pch=16, bty="n", yaxt="n",xaxt="n", col="black",
-            ylim=c(-1.2,1.2), xlim=c(-1.2,1.2), asp=1, ann=FALSE, ...)
+            xlim="auto", ylim="auto", asp=1, ann=FALSE,
+            axes=FALSE, vectors=FALSE, ...)
 }
 \arguments{
-  \item{vnames}{Vector names.}
   \item{x}{x-coordinate}
-  \item{y}{y-coordinate}
+  \item{y}{y-coordinate. \code{y=0} when \code{photo=2}}
+  \item{photo}{Number of photoreceptor types. \code{photo=3} for a trichromatic animal, and \code{photo=2} for a dichromatic animal.}
+  \item{vnames}{Vector names.}
   \item{pch}{see \code{\link{par}} function.}
   \item{bty}{see \code{\link{par}} function.}
   \item{yaxt}{see \code{\link{par}} function.}
   \item{xaxt}{see \code{\link{par}} function.}
   \item{col}{see \code{\link{par}} function.}
-  \item{ylim}{see \code{\link{plot}} function.}
-  \item{xlim}{see \code{\link{plot}} function.}
+  \item{xlim}{see \code{\link{plot}} function. Default calculates xlim automatically.}
+  \item{ylim}{see \code{\link{plot}} function. Default calculates ylim automatically.}
   \item{asp}{see \code{\link{plot}} function.}
   \item{ann}{see \code{\link{par}} function.}
+  \item{axes}{see \code{\link{plot.default}} function.}
+  \item{vectors}{Whether vectors representing direction of photoreceptor outputs should be plotted.}
   \item{...}{Other arguments passed to \code{\link{plot}} function.}
-
 }
 \references{
 Chittka, L. 1992. The colour hexagon: a chromaticity diagram based on photoreceptor excitations as a generalized representation of colour opponency. J Comp Physiol A 170:533-543.

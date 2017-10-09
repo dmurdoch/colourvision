@@ -10,7 +10,7 @@ CTTKhexagon3D(x, y, z, s.col = "red", f.col = "black",
               vnames = c("E1","E2","E3","E4"), type = "p",
               radius = 0.01, add = F, xlab = "", ylab = "", zlab = "",
               box = F, axes = F, ylim = c(-1, 1), xlim = c(-1, 1),
-              zlim = c(-1,1), aspect = T, ...)
+              zlim = c(-1,1), aspect = T, vectors=F, ...)
 }
 \arguments{
   \item{x}{x coordinate of points to be plotted}
@@ -31,6 +31,7 @@ CTTKhexagon3D(x, y, z, s.col = "red", f.col = "black",
   \item{xlim}{see \code{\link{plot3d}} function.}
   \item{zlim}{see \code{\link{plot3d}} function.}
   \item{aspect}{see \code{\link{plot3d}} function.}
+  \item{vectors}{Whether vectors representing direction of photoreceptor outputs should be plotted.}
   \item{...}{Other arguments passed to function \code{\link{plot3d}}.}
 }
 \references{
@@ -46,6 +47,7 @@ Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 }
 \examples{
 \dontrun{
+library(rgl)
 CTTKhexagon3D(x=0,y=0,z=0)
 }
 }

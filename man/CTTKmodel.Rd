@@ -1,7 +1,7 @@
 \name{CTTKmodel}
 \alias{CTTKmodel}
 \title{
-Chittka (1992) colour vision models
+Chittka (1992) colour vision model
 }
 \description{
 Chittka (1992) colour hexagon extended to animals with any number of photoreceptors.
@@ -33,20 +33,20 @@ A sequence of numeric values specifying where interpolation is to take place. Se
 
 }
 \details{
-The original model is available for trichromatic animals only. Thery and Casas (2002) derived a version for tetrachromatic animals which is implemented here. In \code{colourvision}, the model was extended to any number of photoreceptors based on Pike (2012) formula. The colour hexagon in Chittka (1992) has a vector of length = 1.0 The chromaticity coordinates in \code{colourvision} preserve the same vector length.
+The original model is available for trichromatic animals only. Thery and Casas (2002) derived a version for tetrachromatic animals which is implemented here. In \code{colourvision}, this model was extended to any number of photoreceptors types (see also Pike 2012). The colour hexagon in Chittka (1992) has a vector of length = 1.0 The chromaticity coordinates in \code{colourvision} preserve the same vector length.
 
 Photoreceptor outputs (\eqn{E_i}{Ei}) are calculated by:
 \deqn{E_i = \frac{q_i}{q_i+1}}{Ei = qi/(qi+1)}
 where \eqn{q_i}{qi} is given by \code{\link{Qr}}.
 
-Then, for thrichromatic vision, coordinates in the colour space are found by (Chittka 1992):
+Then, for trichromatic vision, coordinates in the colour space are found by (Chittka 1992):
 \deqn{X_1 = \frac{\sqrt{3}}{2}(E_3-E_1)}{X1 = (sqrt(3)/2)*(E3-E1)}
 \deqn{X_2 = E_2-\frac{1}{2}(E_1+E_3)}{X2 = E2-0.5*(E1+E3)}
 For tetrachromatic vision (Thery and Casas 2002):
 \deqn{X_1 = \frac{\sqrt{3}\sqrt{2}}{3}(E_3-E_4)}{X1 = ((sqrt(3)*sqrt(2))/3)*(E3-E4)}
 \deqn{X_2 = E_1-\frac{1}{3}(E_2+E_3+E_4)}{X2 = E1-(1/3)*(E2+E3+E4)}
 \deqn{X_3 = \frac{2\sqrt{2}}{3}(\frac{1}{2}(E_3+E_4)-E_2)}{X3 = (2*sqrt(2)/3)*(0.5*(E3+E4)-E2)}
-Then, for a pentachromatic animal following the same vector length:
+For a pentachromatic animal following the same vector length:
 \deqn{X_1 = \frac{5}{2\sqrt{2}\sqrt{5}}(E_2-E_1)}{X1 = (5/(2*sqrt(2)*sqrt(5)))*(E2-E1)}
 \deqn{X_2 = \frac{5\sqrt{2}}{2\sqrt{3}\sqrt{5}}(E_3-\frac{E_1+E_2}{2})}{X2 = (5*sqrt(2)/(2*sqrt(3)*sqrt(5)))*(E3-(E1+E2)/2)}
 \deqn{X_3 = \frac{5\sqrt{3}}{4\sqrt{5}}(E_4-\frac{E_1+E_2+E_3}{3})}{X3 = (5*sqrt(3)/(4*sqrt(5)))*(E4-(E1+E2+E3)/3)}
@@ -57,7 +57,7 @@ Then, for a pentachromatic animal following the same vector length:
 \item{Qri}{Photoreceptor photon catch values after the von Kries transformation (see function \code{\link{Qr}}).}
 \item{Ei}{Photoreceptor output values. Values can vary from 0 to 1.}
 \item{Xi}{Coordinates in the colour space.}
-\item{deltaS}{Euclidian distance to the origin of the colour space. It represents the conspicouness of the stimulus (\code{R}) in relation to the background (\code{Rb}).}
+\item{deltaS}{Euclidean distance to the origin of the colour space. It represents the conspicuousness of the stimulus (\code{R}) in relation to the background (\code{Rb}).}
 }
 \references{
 Chittka, L. 1992. The colour hexagon: a chromaticity diagram based on photoreceptor excitations as a generalized representation of colour opponency. J Comp Physiol A 170:533-543.
@@ -70,7 +70,7 @@ Thery, M., and J. Casas. 2002. Predator and prey views of spider camouflage. Nat
 Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 }
 \seealso{
-\code{\link{CTTKhexagon}}, \code{\link{CTTKhexagon3D}}, \code{\link{photor}}, \code{\link{RNLmodel}}, \code{\link{EMmodel}}
+\code{\link{CTTKhexagon}}, \code{\link{CTTKhexagon3D}}, \code{\link{photor}}, \code{\link{RNLmodel}}, \code{\link{EMmodel}}, \code{\link{deltaS}}
 }
 \examples{
 ##Photoreceptor sensitivity curves

@@ -46,5 +46,5 @@ Vorobyev, M., and D. Osorio. 1998. Receptor noise as a determinant of colour thr
 Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 }
 \seealso{
-\code{\link{CTTKmodel}}, \code{\link{EMmodel}}, \code{\link{RNLmodel}}, \code{\link{RNLthres}}
+\code{\link{CTTKmodel}}, \code{\link{EMmodel}}, \code{\link{RNLmodel}}, \code{\link{RNLthres}}, \code{\link{GENmodel}}
 }

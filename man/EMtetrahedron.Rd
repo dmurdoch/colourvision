@@ -7,11 +7,11 @@ Plots Endler and Mielke (2005) tetrahedron colour space for tetrachromatic anima
 \usage{
 EMtetrahedron(x, y, z, s.col = "red", f.col = "black",
               vnames = c("u","s","m","l"), type = "p",
-              radius = 0.01, add = F, xlab = "", 
-              ylab = "", zlab = "", box = F, axes = F, 
+              radius = 0.01, add = F, xlab = "",
+              ylab = "", zlab = "", box = F, axes = F,
               ylim = c(-0.75, 0.75), xlim = c(-0.75, 0.75),
-              zlim = c(-0.75, 0.75), aspect = T, 
-              mar = c(1, 1, 1, 1), ...)
+              zlim = c(-0.75, 0.75), aspect = T,
+              mar = c(1, 1, 1, 1), vectors=FALSE, ...)
 }
 \arguments{
   \item{x}{x coordinate of points to be plotted}
@@ -33,6 +33,7 @@ EMtetrahedron(x, y, z, s.col = "red", f.col = "black",
   \item{zlim}{see \code{\link{plot3d}} function.}
   \item{aspect}{see \code{\link{plot3d}} function.}
   \item{mar}{see \code{\link{plot3d}} function.}
+  \item{vectors}{Whether vectors representing direction of photoreceptor outputs should be plotted.}
   \item{...}{Other arguments passed to function \code{\link{plot3d}}.}
 }
 \references{
@@ -46,6 +47,7 @@ Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 }
 \examples{
 \dontrun{
+library(rgl)
 EMtetrahedron(x=0,y=0,z=0)
 }
 }

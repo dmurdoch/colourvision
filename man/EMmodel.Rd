@@ -4,7 +4,7 @@
 Endler and Mielke (2005) colour vision model
 }
 \description{
-Endler and Mielke (2005) colour vision model extended to animals with any number of photoreceptors.
+Endler and Mielke (2005) colour vision model extended to animals with any number of photoreceptor types.
 }
 \usage{
 EMmodel(photo = ncol(C)-1, type="length", R, I, Rb, C,
@@ -33,7 +33,7 @@ Whether data files should be interpolated before further calculations. See \code
 A sequence of numeric values specifying where interpolation is to take place. See \code{\link{approx}}.}
 }
 \details{
-The original model is available for tetrachromatic animals only. In \code{colourvision}, the model was extended to any number of photoreceptors based on Pike (2012) formula.
+The original model is available for tetrachromatic animals only. In \code{colourvision}, the model was extended to any number of photoreceptors types (see also Pike 2012 formula).
 
 First, relative quantum catches are log-transformed:
 \deqn{f_{i} = \ln{q_i}}{fi = ln(qi)}
@@ -49,16 +49,16 @@ Tetrachromatic chromaticity diagram (tetrahedron) in Endler and Mielke (2005) ha
 
 For instance, for dichromatic vision coordinate (X1) in the colour space preserving the same vector length is found by:
 \deqn{X1 = \frac{3}{4}(E_2-E_1)}{X1 = (3/4)*(E2-E1)}
-Whereas for thrichromatic vision coordinates (X1 and X2) are found by:
+Whereas for trichromatic vision coordinates (X1 and X2) are found by:
 \deqn{X1 = \frac{3\sqrt{3}}{8}(E_2-E_1)}{X1 = (3*sqrt(3)/8)*(E2-E1)}
 \deqn{X2 = \frac{3}{4}(E_3-\frac{E_2+E_1}{2})}{X2 = (3/4)*(E3-(E2+E1)/2)}
 }
 
 \value{
 \item{Qri}{Photoreceptor photon catch values after the von Kries transformation (see function \code{\link{Qr}}).}
-\item{Ei}{Photoreceptor outputs after convertion to relative values.}
+\item{Ei}{Photoreceptor outputs after conversion to relative values.}
 \item{Xi}{Coordinates in the colour space.}
-\item{deltaS}{Euclidian distance to the origin of the colour space. It represents the conspicouness of the stimulus (\code{R}) in relation to the background (\code{Rb}). Maximum value is 0.75}
+\item{deltaS}{Euclidean distance to the origin of the colour space. It represents the conspicuousness of the stimulus (\code{R}) in relation to the background (\code{Rb}).}
 }
 \references{
 Endler, J. A., and P. Mielke. 2005. Comparing entire colour patterns as birds see them. Biol J Linn Soc 86:405-431.
@@ -69,7 +69,7 @@ Pike, T.W. 2012. Generalised chromaticity diagrams for animals with n-chromatic 
 Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 }
 \seealso{
-\code{\link{EMtriangle}}, \code{\link{EMtetrahedron}}, \code{\link{photor}}, \code{\link{CTTKmodel}}, \code{\link{RNLmodel}}
+\code{\link{EMline}}, \code{\link{EMtriangle}}, \code{\link{EMtetrahedron}}, \code{\link{photor}}, \code{\link{CTTKmodel}}, \code{\link{RNLmodel}}, \code{\link{GENmodel}}
 }
 \examples{
 ##Photoreceptor sensitivity curves

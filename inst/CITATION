@@ -3,7 +3,7 @@ note <- sprintf("R package version %s", meta$Version)
 
 bibentry(bibtype = "Article",
          title = "Colour Vision Models: a practical guide, some simulations, and {colourvision} R package",
-         author = person(given="Felipe", middle="Malheiros", family="Gawryszewski"),
+         author = person(given=c("Felipe", "Malheiros"), family="Gawryszewski"),
          year = 2017,
          doi= "10.1101/103754",
          note = note,

@@ -4,7 +4,7 @@
 \title{
 Brazilian savannah background reflectance spectrum.}
 \description{
-Brazilian savannah background reflectance spectrum calculated by the average reflectance of leaf, leaf litter, tree bark and twigs collected in the envirionment.}
+Brazilian savannah background reflectance spectrum calculated by the average reflectance of leaf, leaf litter, tree bark and twigs.}
 \usage{data("Rb")}
 \format{
   A data frame with 401 observations on the following 2 variables.

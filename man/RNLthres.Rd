@@ -48,11 +48,9 @@ A data.frame with the following columns:
 }
 
 \details{
-Colour thresholds based on receptor noise limited model as in Vorobyev and Osorio (1998). The model was extended to accommodate any number of photoreceptor types (>=2).
-
-In lack of a direct measurement, receptor noise (\eqn{e_i}{ei}) can be estimated by the relative abundance of photoreceptor types in the retina, and a measurement of a single photoreceptor noise-to-signal ratio:
+Colour thresholds based on receptor noise limited model as in Vorobyev and Osorio (1998). In lack of a direct measurement, receptor noise (\eqn{e_i}{ei}) can be estimated by the relative abundance of photoreceptor types in the retina, and a measurement of a single photoreceptor noise-to-signal ratio:
 \deqn{e_i=\frac{\nu}{\sqrt{\eta _i}}}{ei=v/sqrt(n)}
-where \eqn{\nu}{v} is the noise-to-signal ratio of a single photoreceptor, and \eqn{\eta}{n} is the relative abundance of photoreceptor i in the retina. Alternativelly, noise may be dependent of the intensity, but this possibility is not implement in \code{colourvision} yet. Noise dependent of intensity usually holds for low light conditions only (Vorobyev et al. 1998). 
+where \eqn{\nu}{v} is the noise-to-signal ratio of a single photoreceptor, and \eqn{\eta}{n} is the relative abundance of photoreceptor i in the retina. Alternatively, noise may be dependent of the intensity, but this possibility is not implement in \code{colourvision} yet. Noise dependent of intensity usually holds for low light conditions only (Vorobyev et al. 1998). 
 }
 \references{
 Vorobyev, M., and D. Osorio. 1998. Receptor noise as a determinant of colour thresholds. Proceedings of the Royal Society B 265:351-358.

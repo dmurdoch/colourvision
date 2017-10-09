@@ -15,7 +15,7 @@ Plotting method for objects of class \code{colourvision}. Plotting method for an
 Object of class "\code{colourvision}".
 }
   \item{\dots}{
-Aditional arguments passed to the plot function. See \code{\link{CTTKhexagon}} for Chittka (1992) model (\code{\link{CTTKmodel}}) plotting arguments; and \code{\link{EMtriangle}} for Endler and Mielke (2005) model (\code{\link{EMmodel}}) plotting arguments.
+Additional arguments passed to the plot function. See \code{\link{CTTKhexagon}} for Chittka (1992) model (\code{\link{CTTKmodel}}) plotting arguments; \code{\link{EMtriangle}} and \code{\link{EMline}} for Endler and Mielke (2005) model (\code{\link{EMmodel}}) plotting arguments; \code{\link{RNLplot}} for RNL plotting arguments; and \code{\link{GENplot}} for generic model (\code{\link{GENmodel}}) plotting arguments.
 }
 }
 \references{
@@ -30,6 +30,7 @@ Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 \code{\link{plot3d.colourvision}}, \code{\link{EMtriangle}}, \code{\link{CTTKhexagon}}, \code{\link{EMmodel}}, \code{\link{CTTKmodel}}, \code{\link{RNLmodel}}, \code{\link{RNLthres}}
 }
 \examples{
+#trichromatic
 ##Photoreceptor sensitivity curves
 C<-photor(lambda.max=c(350,450,550))
 
@@ -52,12 +53,38 @@ model<-CTTKmodel(photo=3,
        R=R1, I=D65, Rb=Rb, C=C)
 plot(model)
 
-model<-RNLmodel(photo=3,
+model<-RNLmodel(model="log", photo=3,
        R1=R1, I=D65, Rb=Rb, C=C, noise=TRUE, e=c(0.13, 0.06, 0.12))
-plot(model, ylim=c(-40,40), xlim=c(-40,40), asp=1)
+plot(model)
 
 #colour threshold
 model<-RNLthres(photo=3, I=D65, Rb=Rb, C=C,
          noise=TRUE, e=c(0.13, 0.06, 0.12))
+plot(model)
+
+#dichromatic
+##Photoreceptor sensitivity curves
+C<-photor(lambda.max=c(400,550))
+
+##Run models
+model<-EMmodel(photo=2,
+       R=R1, I=D65, Rb=Rb, C=C)
+plot(model)
+
+model<-EMmodel(photo=2, type="edge",
+       R=R1, I=D65, Rb=Rb, C=C)
+plot(model)
+
+model<-CTTKmodel(photo=2,
+       R=R1, I=D65, Rb=Rb, C=C)
+plot(model)
+
+model<-RNLmodel(model="log", photo=2,
+       R1=R1, I=D65, Rb=Rb, C=C, noise=TRUE, e=c(0.13, 0.06))
+plot(model)
+
+#colour threshold
+model<-RNLthres(photo=2, I=D65, Rb=Rb, C=C,
+         noise=TRUE, e=c(0.13, 0.06))
 plot(model)
 }

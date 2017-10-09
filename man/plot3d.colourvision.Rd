@@ -16,7 +16,7 @@ Plot colour vision models into 3D chromaticity diagrams.
 Object of class "\code{colourvision}".
 }
   \item{\dots}{
-Aditional arguments passed to the plot3d function. See \code{\link{CTTKhexagon3D}} for Chittka (1992) model (\code{\link{CTTKmodel}}) plotting arguments; and \code{\link{EMtetrahedron}} for Endler and Mielke (2005) model (\code{\link{EMmodel}}) plotting arguments.
+Additional arguments passed to the plot3d function. See \code{\link{CTTKhexagon3D}} for Chittka (1992) model (\code{\link{CTTKmodel}}) plotting arguments; \code{\link{EMtetrahedron}} for Endler and Mielke (2005) model (\code{\link{EMmodel}}) plotting arguments;  \code{\link{RNLplot3d}} for RNL plotting arguments; and \code{\link{GENplot3d}} for generic model (\code{\link{GENmodel}}) plotting arguments.
 }
 }
 \references{
@@ -26,6 +26,7 @@ Endler, J. A., and P. Mielke. 2005. Comparing entire colour patterns as birds se
 
 Thery, M., and J. Casas. 2002. Predator and prey views of spider camouflage. Nature 415:133-133.
 }
+
 \author{
 Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 }
