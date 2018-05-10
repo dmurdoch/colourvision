@@ -1,3 +1,10 @@
+colourvision v2.0.1
+=================
+1. Corrected minor typos in package vignette.
+
+2. Fixed minor bug in EMtriangle example (if condition of length greater than one).
+
+
 colourvision v2.0
 =================
 1. Updated colour_vision( ) function to incorporate receptor noise data.

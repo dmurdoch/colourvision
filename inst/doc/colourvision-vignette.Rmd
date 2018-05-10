@@ -343,7 +343,7 @@ where ${\nu}$ is the noise-to-signal ratio of a single photoreceptor, and ${\eta
 
 Then, $\Delta$S is calculated by [eq. A7 in @Vorobyev:1998p335]:
 
-$$(\Delta{S})^2 = V \times \Delta\vec{p} \bullet (V \times R \times V^T)^{-1}  \times V \times \Delta\vec{p}$$
+$$(\Delta{S})^2 = V  \Delta\vec{p} \bullet (V  R  V^T)^{-1}   V  \Delta\vec{p}$$
 where $V$ is a matrix of column vectors, $\bullet$ denotes the inner product, $T$ denotes the transpose, $\Delta\vec{p}$ is a vector which components represent differences between $E$-values, and $R$ is a covariance matrix of photoreceptor values. Photoreceptors values are not correlated, therefore $R$ is a diagonal matrix which diagonal elements are the photoreceptor variances ($e_i^2$):
 
 $$R = \left[\array{
@@ -354,7 +354,7 @@ e_1^2 & 0 & 0 &\\
 
 The receptor noise limited model was originally developed to calculate $\Delta$S between two reflectance curves directly, without finding colour locus coordinates [see eqs 3-5 in @Vorobyev:1998p1813]. Nonetheless, for visualisation purposes it is useful to project colour vision model results into chromaticity diagrams. This can be done by [Gawryszewski, under review; see also @HempeldeIbarra:2001tf; and @Renoult:2017dv for alternative formulae]:
 
-$$\vec{s} = \sqrt{(V \times R \times V^T)^{-1}} \times V \times \vec{p}$$
+$$\vec{s} = \sqrt{(V  R  V^T)^{-1}}  V  \vec{p}$$
 
 where $\vec{s}$ is a vector which components represent stimulus colour locus coordinates, $\vec{p}$ is a vector which components represent stimulus $E$-values, and other elements are the same as in the preceding formula.
 
@@ -395,7 +395,7 @@ head(RNLmodel3.2)
 ###`RNLthres()`
 @Vorobyev:1998p1813 aimed to predict discrimination threshold of monochromatic stimuli. By definition, thresholds are found when $\Delta{S} = 1$, therefore [@Vorobyev:1998p1813]:
 
-$$(1)^2 = V \times \Delta\vec{p} \bullet (V \times R \times V^T)^{-1}  \times V \times \Delta\vec{p}$$
+$$(1)^2 = V  \Delta\vec{p} \bullet (V  R  V^T)^{-1}   V  \Delta\vec{p}$$
 `RNLthres()` calculates thresholds of monochromatic light for a given background, illuminant, photoreceptor sensitivities and photoreceptor noise.
 
 Worked example:

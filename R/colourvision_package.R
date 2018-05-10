@@ -916,7 +916,7 @@ CTTKhexagon3D<- function (x, y, z, s.col = "red", f.col = "black", vnames = c("E
 
 
 
-EMtriangle <- function (x, y, type=c("length","edge"), vnames=c("u","s","m"),
+EMtriangle <- function (x, y, type=c("length", "edge"), vnames=c("u","s","m"),
                         ylim=c(-0.9,0.9),
                         xlim=c(-0.9,0.9),
                         pch=16, bty="n",yaxt="n",xaxt="n",

@@ -7,7 +7,7 @@ Endler and Mielke (2005) triangle colour space
 Plots a triangle colour space for trichromatic Endler and Mielke (2005) colour vision model.
 }
 \usage{
-EMtriangle(x, y, type=c("length","edge"), vnames=c("u","s","m"),
+EMtriangle(x, y, type=c("length", "edge"), vnames=c("u","s","m"),
            ylim=c(-0.9,0.9), xlim=c(-0.9,0.9),
            pch=16, bty="n",yaxt="n",xaxt="n",
            col="black", asp=1, ann=FALSE, vectors=FALSE, ...)
@@ -47,5 +47,5 @@ Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 \code{\link{EMtetrahedron}},  \code{\link{EMmodel}}
 }
 \examples{
-EMtriangle(x=0,y=0, pch=16, col="red")
+EMtriangle(x=0,y=0, type="length", pch=16, col="red")
 }
