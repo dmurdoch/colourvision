@@ -20,7 +20,7 @@ The DESCRIPTION file:
 Maintainer: \packageMaintainer{colourvision}
 }
 \references{
-Gawryszewski, F.M. 2017. Colour vision models: a practical guide, some simulations, and colourvision R package. bioRiv, \doi{10.1101/103754}
+Gawryszewski, F.M. 2018. Colour vision models: Some simulations, a general n-dimensional model, and the colourvision R package. Ecology and Evolution, 10.1002/ece3.4288.
 }
 \keyword{ package }
 \examples{

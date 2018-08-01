@@ -195,13 +195,13 @@ GENmodel<-function(photo=ncol(C)-1, type="length", length=NA, edge=NA, R, I, Rb=
   if (photo=="penta") {photo1<-5}
   
   #warnings
-  ifelse(photo1 != nphoto, yes = warning("Argument 'C' has a number of sensitivity curves different than argument 'photo'.", 
+  ifelse(photo1 != nphoto, yes = warning("Argument 'C' has a different number of sensitivity curves than argument 'photo'.", 
                                          call. = FALSE), no = "")
   ifelse(photo1 != length(e) && recep.noise == T && noise.given == T, 
-         yes = warning("Argument 'e' has a number of parameters different than 'photo'.", 
+         yes = warning("Argument 'e' has a different number of parameters than 'photo'.", 
                        call. = FALSE), no = "")
   ifelse(photo1 != length(n) && recep.noise==TRUE && noise.given == F, 
-         yes = warning("Argument 'n' has a number of parameters different than 'photo'.", 
+         yes = warning("Argument 'n' has a different number of parameters than 'photo'.", 
                        call. = FALSE), no = "")
   ifelse(any(ncol(I) > 2), yes = warning("'I' argument with more than two columns. Only the first two will be used.", 
                                          call. = FALSE), no = "")
@@ -338,7 +338,7 @@ EMmodel <- function (photo=ncol(C)-1,
   if(photo=="penta"){photo1<-5}
   nphoto=ncol(C)-1
   
-  ifelse(photo1 != nphoto, yes = warning("Argument 'C' has a number of sensitivity curves different than argument 'photo'.", 
+  ifelse(photo1 != nphoto, yes = warning("Argument 'C' has a different number of sensitivity curves than argument 'photo'.", 
                                          call. = FALSE), no = "")
   ifelse(any(ncol(I) > 2), yes = warning("'I' argument with more than two columns. Only the first two will be used.", 
                                          call. = FALSE), no = "")

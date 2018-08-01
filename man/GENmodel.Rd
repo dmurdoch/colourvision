@@ -4,7 +4,7 @@
 N-dimensional generic colour vision model
 }
 \description{
-A flexible function to build colour vision models based on any number of photoreceptor types.
+A flexible function to build colour vision models based on any number of photoreceptor types (Gawryszewski 2018).
 }
 \usage{
 GENmodel(photo=ncol(C)-1, type="length", length=NA, edge=NA,
@@ -36,7 +36,7 @@ Photoreceptor sensitivity curves, from lowest to longest lambda-max. A data fram
 }
   \item{vonKries}{Whether the von Kries transformation should be applied to photoreceptor photon catches. Calculates the ratio between stimulus and background photoreceptor photon catches}
 
-  \item{func}{Transformation of photoreceptors inputs. For instance, \code{func=log10} for a log10 transformation.}
+  \item{func}{Transformation of photoreceptors inputs. For instance, \code{func=log} for a ln-transformation.}
   
   \item{unity}{Whether sum of photoreceptor output should be normalized to 1, as in \code{\link{EMmodel}}}
   
@@ -48,7 +48,7 @@ Photoreceptor sensitivity curves, from lowest to longest lambda-max. A data fram
 Receptor noise of each photoreceptor type. Used when \code{recep.noise = TRUE} and \code{noise.given = TRUE}
 }
   \item{n}{
-Relative number of each photoreceptor type in the retina. Usually increases with lambda-max. Used to calculate \code{e} when \code{recep.noise = TRUE} and \code{noise.given = TRUE}.
+Relative number of each photoreceptor type in the retina. Used to calculate \code{e} when \code{recep.noise = TRUE} and \code{noise.given = TRUE}.
 }
   \item{v}{
 Noise-to-signal ratio of a single photoreceptor. Used to calculate \code{e} when \code{recep.noise = TRUE} and \code{noise.given = TRUE}.
@@ -68,6 +68,8 @@ A sequence of numeric values specifying where interpolation is to take place. Se
 \item{deltaS}{Euclidean distance to the origin of the colour space. It represents the conspicuousness of the stimulus (\code{R}) in relation to the background (\code{Rb})}
 }
 \references{
+Gawryszewski, F.M. 2018. Colour vision models: Some simulations, a general n-dimensional model, and the colourvision R package. Ecology and Evolution, 10.1002/ece3.4288.
+
 Pike, T.W. 2012. Generalised chromaticity diagrams for animals with n-chromatic colour vision. Journal of Insect Behavior 255: 277-286.
 
 Renoult, J. P., A. Kelber, and H. M. Schaefer. 2015. Colour spaces in ecology and evolutionary biology. Biol Rev Camb Philos Soc, doi: 10.1111/brv.12230.

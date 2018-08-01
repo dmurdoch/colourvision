@@ -23,9 +23,9 @@ library(colourvision)
 <br>
 
 #Introduction
-This is a practical user guide to `colourvision`. Colour vision models allow appraisals of colour patches independently of the human vison. More detailed explanation on colour vision models is provided elsewhere [@Kelber:2003p1255; @ENDLER:2005p538; @Osorio:2008ep; @Kemp:2015jf; @Renoult:2017dv; @Gawryszewski:gt].
+This is a practical user guide to `colourvision`. Colour vision models allow appraisals of colour patches independently of the human vision. More detailed explanation on colour vision models is provided elsewhere [@Kelber:2003p1255; @ENDLER:2005p538; @Osorio:2008ep; @Kemp:2015jf; @Renoult:2017dv; @Gawryszewski:gt].
 
-Package `colourvision` has functions to the three most commonly used models by ecologists, behavioural ecologists, and evolutionary biologists [@Chittka:1992p186; @Vorobyev:1998p1813; @Vorobyev:1998p335; @ENDLER:2005p538], and a generic function to build alternative models based on the same set of general assumptions. These models have been extended to accept any number of photoreceptor types, i.e., the same model may be applied to a dichromatic mammal and a tentativelly pentachromatic dipterean. Modelling functions provide a comprehensive output, which may be visualised into publication-ready colour space plots. 
+Package `colourvision` has functions to the three most commonly used models by ecologists, behavioural ecologists, and evolutionary biologists [@Chittka:1992p186; @Vorobyev:1998p1813; @Vorobyev:1998p335; @ENDLER:2005p538], and a generic function to build alternative models based on the same set of general assumptions. These models have been extended to accept any number of photoreceptor types, i.e., the same model may be applied to a dichromatic mammal and a tentatively pentachromatic dipterean. Modelling functions provide a comprehensive output, which may be visualised into publication-ready colour space plots. 
 
 <br>
 <br>
@@ -55,12 +55,12 @@ plot(spider.smooth, ylim=c(0,50), xlim=c(300,700), type="l",
 <br>
 
 ##`photor()`
-Photoreceptor sensitivity curves are seldom available, but they can be estimated using wavelength of maximum sensitivity [$\lambda_{max}$; @Govardovskii:2000tf]. `photor` generates photoreceptor sensitivity spectra based on $\lambda_{max}$ values:
+Photoreceptor sensitivity curves are seldom available, but they can be estimated using the wavelength of maximum sensitivity [$\lambda_{max}$; @Govardovskii:2000tf]. `photor` generates photoreceptor sensitivity spectra based on $\lambda_{max}$ values:
 
 ```{r}
 human<-photor(lambda.max = c(420,530,560), lambda = seq(400, 700, 1))
 ```
-```{r echo=FALSE, fig.cap = "Figure 2. Estimated photoreceptor sensitivity curves based on wavelength of maximum sensitivity using `photor( )` function.", fig.align="center", fig.width=4, fig.height=4, dev='svg', out.width='300px'}
+```{r echo=FALSE, fig.cap = "Figure 2. Estimated photoreceptor sensitivity curves based on the wavelength of maximum sensitivity using `photor( )` function.", fig.align="center", fig.width=4, fig.height=4, dev='svg', out.width='300px'}
 plot(human[,2]~human[,1], type="l", ylim=c(0,1),
      col="blue", lwd=2,
      ann = FALSE,
@@ -114,11 +114,11 @@ plot(D65photon, xlim=c(300,700), type="l",
 
 #Colour Vision Models
 ##The Basics
-This section serves as a brief introduction to colour vision models, and to introduce internal package functions used to calculate colour vision models. For model specific functions (`CTTKmodel`, `EMmodel`, `RNLmodel`, `RNLthres`, and `GENmodel`) please refer to further sections in this manual.
+This section serves as a brief introduction to colour vision models, and to introduce internal package functions used to calculate colour vision models. For model specific functions (`CTTKmodel`, `EMmodel`, `RNLmodel`, `RNLthres`, and `GENmodel`), please refer to further sections in this manual.
 
 Colour vision models require a minimum of four parameters for calculations: (1) photoreceptor sensitivity curves, (2) background reflectance spectrum, (3) illuminant spectrum, and (4) the stimulus reflectance spectrum (stimulus). Receptor noise limited models also require photoreceptor noise for each photoreceptor type.
 
-Firstly, one needs to estimate photon catches of each photoreceptor type in the retina, which is function of the stimulus reflectance, photoreceptor sensitivity, and the illuminant spectrum:
+Firstly, one needs to estimate photon catches of each photoreceptor type in the retina, which is a function of the stimulus reflectance, photoreceptor sensitivity, and the illuminant spectrum:
 
 $$Q_i = \int_{300}^{700} R(\lambda)I(\lambda)C_i(\lambda) d\lambda$$
 where $R(\lambda)$ denote the stimulus reflectance, $I(\lambda)$ the illuminant spectrum, and $C(\lambda)$ the photoreceptor sensitivity curves. Note that the illuminant spectrum has to be in quantum flux units, not energy units, because photoreceptors respond to photon numbers, not photon energy.
@@ -174,9 +174,9 @@ For instance,
 @Chittka:1992p186 assumes an asymptotic curve with limit = 1:
 $$E_i = \frac{q_i}{q_i+1}$$
 
-Photoreceptor outputs are then projected as equidistant vectors into a colour space. Again, each model will present differently arranged vectors, however this arrangement is arbitrary and has no effect on model predictions. The length of the resultant vector represents the chromaticity distance of the stimulus in relation to the background, and vector coordinates represent the stimulus locus in the animal colour space (colour locus).
+Photoreceptor outputs are then projected as equidistant vectors into a colour space. Again, each model will present differently arranged vectors, however, this arrangement is arbitrary and has no effect on model predictions. The length of the resultant vector represents the chromaticity distance of the stimulus in relation to the background, and vector coordinates represent the stimulus locus in the animal colour space (colour locus).
 
-For instance, `colour_space` generates a generic colour space based on any number of photoreceptor types, and calculates colour locus coordinates for a given photoreceptor output:
+For instance, `colour_space` generates a general colour space based on any number of photoreceptor types, and calculates colour locus coordinates for a given photoreceptor output:
 
 ```{r}
 colour_space(n=3, type="length", length=1, edge=NA, q=c(Qr1,Qr2,Qr3))
@@ -195,7 +195,7 @@ For tetrachromatic vision [@Thery:2002p163]:
 $${X_1 = \frac{\sqrt{3}\sqrt{2}}{3}(E_3-E_4)}$$
 $${X_2 = E_1-\frac{1}{3}(E_2+E_3+E_4)}$$
 $${X_3 = \frac{2\sqrt{2}}{3}(\frac{1}{2}(E_3+E_4)-E_2)}$$
-Then, for a pentachromatic animal (Gawryszewski, under review):
+Then, for a pentachromatic animal [@Gawryszewski:gt]:
 $${X_1 = \frac{5}{2\sqrt{2}\sqrt{5}}(E_2-E_1)}$$
 $${X_2 = \frac{5\sqrt{2}}{2\sqrt{3}\sqrt{5}}(E_3-\frac{E_1+E_2}{2})}$$
 $${X_3 = \frac{5\sqrt{3}}{4\sqrt{5}}(E_4-\frac{E_1+E_2+E_3}{3})}$$
@@ -292,7 +292,7 @@ knitr::kable(head(CTTKmodel3), caption = "Table 1. `CTTKmodel()` output of a tri
 ```
 
 ##Endler & Mielke (2005)
-The original model is available for tetrachromatic animals only. In `colourvision`, the model was extended to any number of photoreceptors based on @Pike:2012tv and further developments (Gawryszewski, under review).
+The original model is available for tetrachromatic animals only. In `colourvision`, the model was extended to any number of photoreceptors [@Gawryszewski:gt; see also @Pike:2012tv].
 
 First, relative quantum catches are log-transformed:
 
@@ -335,7 +335,7 @@ knitr::kable(head(EMmodel3), caption = "Table 2. `EMmodel()` output of a trichro
 ##Receptor Noise Limited Models (Vorobyev & Osorio 1998; Vorobyev et al. 1998)
 Receptor Noise Limited Model assumes that chromatic discrimination is limited by noise at the photoreceptors [@Vorobyev:1998p1813; @Vorobyev:1998p335]. Model calculation follows similar steps as in @Chittka:1992p186 and @ENDLER:2005p538, but has an additional step, namely, calculation of noise at the resultant vector, based on noise of each photoreceptor type.
 
-Photoreceptor noise are seldom measured directly. In lack of a direct measurement, receptor noise (${e_i}$) can be estimated by the relative abundance of photoreceptor types in the retina, and a measurement of a single photoreceptor noise-to-signal ratio [@Vorobyev:1998p1813; @Vorobyev:1998p335]:
+Photoreceptor noise is seldom measured directly. In lack of direct measurement, receptor noise (${e_i}$) can be estimated by the relative abundance of photoreceptor types in the retina, and a measurement of a single photoreceptor noise-to-signal ratio [@Vorobyev:1998p1813; @Vorobyev:1998p335]:
 $${e_i=\frac{\nu}{\sqrt{\eta _i}}}$$
 where ${\nu}$ is the noise-to-signal ratio of a single photoreceptor, and ${\eta}$ is the relative abundance of photoreceptor $i$ in the retina.
 
@@ -344,7 +344,7 @@ where ${\nu}$ is the noise-to-signal ratio of a single photoreceptor, and ${\eta
 Then, $\Delta$S is calculated by [eq. A7 in @Vorobyev:1998p335]:
 
 $$(\Delta{S})^2 = V  \Delta\vec{p} \bullet (V  R  V^T)^{-1}   V  \Delta\vec{p}$$
-where $V$ is a matrix of column vectors, $\bullet$ denotes the inner product, $T$ denotes the transpose, $\Delta\vec{p}$ is a vector which components represent differences between $E$-values, and $R$ is a covariance matrix of photoreceptor values. Photoreceptors values are not correlated, therefore $R$ is a diagonal matrix which diagonal elements are the photoreceptor variances ($e_i^2$):
+where $V$ is a matrix of column vectors, $\bullet$ denotes the inner product, $T$ denotes the transpose, $\Delta\vec{p}$ is a vector which components represent differences between $E$-values, and $R$ is a covariance matrix of photoreceptor values. Photoreceptors values are not correlated, therefore $R$ is a diagonal matrix in which diagonal elements are the photoreceptor variances ($e_i^2$):
 
 $$R = \left[\array{
 e_1^2 & 0 & 0 &\\
@@ -352,7 +352,7 @@ e_1^2 & 0 & 0 &\\
 0 & 0  & e_3^2&\\
 & \vdots &  & \ddots &}\right]$$
 
-The receptor noise limited model was originally developed to calculate $\Delta$S between two reflectance curves directly, without finding colour locus coordinates [see eqs 3-5 in @Vorobyev:1998p1813]. Nonetheless, for visualisation purposes it is useful to project colour vision model results into chromaticity diagrams. This can be done by [Gawryszewski, under review; see also @HempeldeIbarra:2001tf; and @Renoult:2017dv for alternative formulae]:
+The receptor noise limited model was originally developed to calculate $\Delta$S between two reflectance curves directly, without finding colour locus coordinates [see eqs 3-5 in @Vorobyev:1998p1813]. Nonetheless, for visualisation purposes it is useful to project colour vision model results into chromaticity diagrams. This can be done by [@Gawryszewski:gt; see also @HempeldeIbarra:2001tf; and @Renoult:2017dv for alternative formulae]:
 
 $$\vec{s} = \sqrt{(V  R  V^T)^{-1}}  V  \vec{p}$$
 
@@ -429,7 +429,7 @@ knitr::kable(head(thres), caption = "Table 3. `RNLthres()` output, showing wavel
 ```
 
 ##Generic model
-A generic function (`GENmodel`) is provided that allows calculation of alternative models based on the same assumptions of other models. Note, however, that colour locus coordinates may differ because positions of vectors used in `GENmodel` are not necessarily the same as in each model specific formula. Also, careful should be taken because models generated by `GENmodel` are not supported by experimental data.
+A generic function (`GENmodel`) is provided that allows calculation of alternative models based on the same assumptions of other models. Note, however, that colour locus coordinates may differ because positions of vectors used in `GENmodel` are not necessarily the same as in each model specific formula. Also, caution should be taken because models generated by `GENmodel` are not supported by experimental data.
 
 ###`GENmodel()`
 Worked examples:
@@ -506,7 +506,7 @@ knitr::kable(head(ANY.RNLmodel3any[,c("E1","E2","E3","X1","X2","deltaS")]), capt
 
 
 ##Chromaticity distances ($\Delta$S)
-Chromaticity distances ($\Delta$S) are the euclidean distances between points in the animal colour space. It is frequently assumed that there is a positive and linear relationship between $\Delta$S values and the probability of discrimination between two colours [although this is not necessarily the case, see @Garcia:2017hl].
+Chromaticity distances ($\Delta$S) are the Euclidean distances between points in the animal colour space. It is frequently assumed that there is a positive and linear relationship between $\Delta$S values and the probability of discrimination between two colours [although this is not necessarily the case, see @Garcia:2017hl].
 
 In `CTTKmodel`, `EMmodel`, and `GENmodel` model outputs, `deltaS` values represent the distance between the stimulus and the background. In `RNLmodel` output, `deltaS` represents the distance between `R1` and `R2`, or between `R1` and the background when `R1=Rb`.
 

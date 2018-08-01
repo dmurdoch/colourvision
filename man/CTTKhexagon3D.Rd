@@ -4,7 +4,7 @@
 Chittka (1992) colour space for tetrachromatic animals.
 }
 \description{
-Plots a hexagonal trapezohedron representing Chittka (1992) colour space for tetrachromatic animals.}
+Plots a hexagonal trapezohedron representing Chittka (1992) colour space for tetrachromatic animals (Thery and Casas, 2002).}
 \usage{
 CTTKhexagon3D(x, y, z, s.col = "red", f.col = "black",
               vnames = c("E1","E2","E3","E4"), type = "p",

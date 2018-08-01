@@ -4,7 +4,7 @@
 Receptor Noise Limited Models (Vorobyev & Osorio 1998)
 }
 \description{
-Receptor noise limited colour vision models (Vorobyev & Osorio 1998; Vorobyev et al. 1998) extended to any number of photoreceptor types .
+Receptor noise limited colour vision models (Vorobyev & Osorio 1998; Vorobyev et al. 1998) extended to any number of photoreceptor types.
 }
 \usage{
 RNLmodel(model = c("linear", "log"), photo=ncol(C)-1,

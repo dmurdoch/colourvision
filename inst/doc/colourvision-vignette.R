@@ -18,7 +18,7 @@ plot(spider.smooth, ylim=c(0,50), xlim=c(300,700), type="l",
 ## ------------------------------------------------------------------------
 human<-photor(lambda.max = c(420,530,560), lambda = seq(400, 700, 1))
 
-## ----echo=FALSE, fig.cap = "Figure 2. Estimated photoreceptor sensitivity curves based on wavelength of maximum sensitivity using `photor( )` function.", fig.align="center", fig.width=4, fig.height=4, dev='svg', out.width='300px'----
+## ----echo=FALSE, fig.cap = "Figure 2. Estimated photoreceptor sensitivity curves based on the wavelength of maximum sensitivity using `photor( )` function.", fig.align="center", fig.width=4, fig.height=4, dev='svg', out.width='300px'----
 plot(human[,2]~human[,1], type="l", ylim=c(0,1),
      col="blue", lwd=2,
      ann = FALSE,

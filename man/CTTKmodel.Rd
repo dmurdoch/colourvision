@@ -4,7 +4,7 @@
 Chittka (1992) colour vision model
 }
 \description{
-Chittka (1992) colour hexagon extended to animals with any number of photoreceptors.
+Chittka (1992) colour hexagon extended to animals with any number of photoreceptors types.
 }
 \usage{
 CTTKmodel(photo=ncol(C)-1, R, I, Rb, C,
@@ -33,7 +33,7 @@ A sequence of numeric values specifying where interpolation is to take place. Se
 
 }
 \details{
-The original model is available for trichromatic animals only. Thery and Casas (2002) derived a version for tetrachromatic animals which is implemented here. In \code{colourvision}, this model was extended to any number of photoreceptors types (see also Pike 2012). The colour hexagon in Chittka (1992) has a vector of length = 1.0 The chromaticity coordinates in \code{colourvision} preserve the same vector length.
+The original model is available for trichromatic animals only. Thery and Casas (2002) derived a version for tetrachromatic animals which is implemented here. In \code{colourvision}, this model was extended to any number of photoreceptors types (Gawryszewski 2018; see also Pike 2012). The colour hexagon in Chittka (1992) has a vector of length = 1.0 The chromaticity coordinates in \code{colourvision} preserve the same vector length.
 
 Photoreceptor outputs (\eqn{E_i}{Ei}) are calculated by:
 \deqn{E_i = \frac{q_i}{q_i+1}}{Ei = qi/(qi+1)}
@@ -61,6 +61,8 @@ For a pentachromatic animal following the same vector length:
 }
 \references{
 Chittka, L. 1992. The colour hexagon: a chromaticity diagram based on photoreceptor excitations as a generalized representation of colour opponency. J Comp Physiol A 170:533-543.
+
+Gawryszewski, F.M. 2018. Colour vision models: Some simulations, a general n-dimensional model, and the colourvision R package. Ecology and Evolution, 10.1002/ece3.4288.
 
 Pike, T.W. 2012. Generalised chromaticity diagrams for animals with n-chromatic colour vision. Journal of Insect Behavior 255: 277-286.
 
