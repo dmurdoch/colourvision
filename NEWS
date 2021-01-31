@@ -1,3 +1,9 @@
+colourvision v2.0.3
+=================
+1. Minor changes in description of functions and in package vignette.
+2. rgl package not mandatory for colourvision instalation.
+
+
 colourvision v2.0.2
 =================
 1. Minor changes in description of functions and in package vignette.

@@ -42,7 +42,7 @@ spider<-read.table("615ad.ProcSpec.transmission", nrows=3000, skip=100)
 ```{r}
 spider.smooth<-spec.denoise(spider)
 ```
-```{r echo=FALSE, fig.cap = "Figure 1. Effect of `spec.denoise( )` applied to a reflectance curve.", fig.align="center", fig.width=8, fig.height=4, dev='svg', out.width='600px'}
+```{r echo=FALSE, fig.cap = "Figure 1. Effect of `spec.denoise( )` applied to a reflectance curve.", fig.align="center", fig.width=8, fig.height=4, out.width='600px'}
 par(mfrow=c(1,2), mar=c(5, 4, 4, 2) + 0.1)
 plot(spider, ylim=c(0,50), xlim=c(300,700), type="l",
      ylab="Reflectance (%)", xlab="Wavelength (nm)",
@@ -60,7 +60,7 @@ Photoreceptor sensitivity curves are seldom available, but they can be estimated
 ```{r}
 human<-photor(lambda.max = c(420,530,560), lambda = seq(400, 700, 1))
 ```
-```{r echo=FALSE, fig.cap = "Figure 2. Estimated photoreceptor sensitivity curves based on the wavelength of maximum sensitivity using `photor( )` function.", fig.align="center", fig.width=4, fig.height=4, dev='svg', out.width='300px'}
+```{r echo=FALSE, fig.cap = "Figure 2. Estimated photoreceptor sensitivity curves based on the wavelength of maximum sensitivity using `photor( )` function.", fig.align="center", fig.width=4, fig.height=4, out.width='300px'}
 plot(human[,2]~human[,1], type="l", ylim=c(0,1),
      col="blue", lwd=2,
      ann = FALSE,
@@ -81,7 +81,7 @@ Creates a sigmoid reflectance curve. Useful for simulations using colour vision 
 ```{r}
 R<-logistic(x0=500, L=80, k=0.04)
 ```
-```{r echo=FALSE, fig.cap = "Figure 3. Simulated reflectance spectrum using the `logistic( )` function.", fig.align="center", fig.width=5, fig.height=4, dev='svg', out.width='400px'}
+```{r echo=FALSE, fig.cap = "Figure 3. Simulated reflectance spectrum using the `logistic( )` function.", fig.align="center", fig.width=5, fig.height=4, out.width='400px'}
 plot(R, ylim=c(0,100),xlim=c(300,700), xlab="Wavelength (nm)", ylab="Reflectance (%)", type="l")
 ```
 
@@ -98,7 +98,7 @@ D65energy<-read.csv("D65energy.csv")
 ```{r echo=TRUE}
 D65photon<-energytoflux(D65energy)
 ```
-```{r echo=FALSE, fig.cap = "Figure 4. CIE D65 in photon energy (left) and quantum flux units (right)", fig.align="center", fig.width=8, fig.height=4, dev='svg', out.width='600px'}
+```{r echo=FALSE, fig.cap = "Figure 4. CIE D65 in photon energy (left) and quantum flux units (right)", fig.align="center", fig.width=8, fig.height=4, out.width='600px'}
 par(mfrow=c(1,2),mar=c(5, 5, 4, 2) + 0.1)
 plot(D65energy, xlim=c(300,700), type="l",
      ylab=expression("Spectral energy"~(uW~cm^-2*nm^-1)), xlab="Wavelength (nm)",
@@ -159,7 +159,7 @@ X<-seq(1,10,by=0.1)
 logY<-log(X)
 hyperY<-X/(X+1)
 ```
-```{r echo=FALSE, fig.cap="Figure 5. Relationship between photoreceptor input and output typically used in colour vision models.", fig.align="center", fig.width=5, fig.height=4, dev='svg', out.width='400px'}
+```{r echo=FALSE, fig.cap="Figure 5. Relationship between photoreceptor input and output typically used in colour vision models.", fig.align="center", fig.width=5, fig.height=4, out.width='400px'}
 #par(cex.axis=0.9, cex.lab=0.9)
 plot(logY~X, xlab="q", ylab="E", type="l", lwd=2, ylim=c(0,max(logY)))
 lines(hyperY~X,col="red", lwd=2)
@@ -215,7 +215,7 @@ data("Rb")
 data("D65")
 ```
 
-```{r echo=FALSE, fig.cap = "Figure 6. *Apis mellifera* photoreceptor sensitivity curves [a; data from @Peitsch:1992p214], background reflectance spectrum [b; data from @Gawryszewski:2012jv], and CIE D65 standard illuminant (c).", fig.align="center", fig.width=15, fig.height=5, dev='svg', out.width='700px'}
+```{r echo=FALSE, fig.cap = "Figure 6. *Apis mellifera* photoreceptor sensitivity curves [a; data from @Peitsch:1992p214], background reflectance spectrum [b; data from @Gawryszewski:2012jv], and CIE D65 standard illuminant (c).", fig.align="center", fig.width=15, fig.height=5, out.width='700px'}
 par(mfrow=c(1,3))
 plot(bee[,2]~bee[,1], type="l", ylim=c(0,100),
      #ylab="Absorbance(%)",
@@ -264,7 +264,7 @@ for (i in 1:length(midpoint)) {
 }
 names(R)[2:ncol(R)]<-midpoint
 ```
-```{r echo=FALSE, fig.cap = "Figure 7. Simulated reflectance spectra.", fig.align="center", fig.width=5, fig.height=4, dev='svg', out.width='400px'}
+```{r echo=FALSE, fig.cap = "Figure 7. Simulated reflectance spectra.", fig.align="center", fig.width=5, fig.height=4, out.width='400px'}
 plot(R[,2]~R[,1], ylim=c(0,100),xlim=c(300,700), xlab="Wavelength (nm)", ylab="Reflectance (%)", type="n", cex=0.9)
 colours<-rainbow(n=(ncol(R)-1))
 for(i in 2:ncol(R)) {
@@ -450,7 +450,7 @@ knitr::kable(head(ANY.CTTKmodel3any), caption = "Table 4. `GENmodel( )` output, 
 <br>
 <br>
 
-```{r echo=FALSE, fig.cap="Figure 8. Photoreceptors outputs represented as vectors in a colour space. Each colour vision model uses differently arranged vectors. As long as pairwise angles between vectors are identical, vector arrangements have no biological significance.", fig.align="center", fig.width=8, fig.height=4, dev='svg', out.width='600px'}
+```{r echo=FALSE, fig.cap="Figure 8. Photoreceptors outputs represented as vectors in a colour space. Each colour vision model uses differently arranged vectors. As long as pairwise angles between vectors are identical, vector arrangements have no biological significance.", fig.align="center", fig.width=8, fig.height=4, out.width='600px'}
 q<-c(0.8,0.8,0.1)
 x<-(sqrt(3)/2)*(q[[3]]-q[[1]])
 y<-q[[2]]-0.5*(q[[1]]+q[[3]])
@@ -524,7 +524,7 @@ dS
 It may be useful to visualise `deltaS` output graphically using the 'corrplot' package:
 <br>
 <br>
-```{r corrplot, echo=TRUE, fig.cap="Figure 9. Graphical representation of chromaticity distances using `corrplot` package. Size and colour of circles denote chromaticity distances between each reflectance spectra.", fig.align="center", fig.width=4, fig.height=4, dev='svg', out.width='400px'}
+```{r corrplot, echo=TRUE, fig.cap="Figure 9. Graphical representation of chromaticity distances using `corrplot` package. Size and colour of circles denote chromaticity distances between each reflectance spectra.", fig.align="center", fig.width=4, fig.height=4, out.width='400px'}
 library(corrplot)
 corrplot(corr=dS, is.corr=FALSE)
 ```
@@ -534,7 +534,7 @@ corrplot(corr=dS, is.corr=FALSE)
 
 ##Plotting models
 
-Models outputs can be easily plotted using the `plot` function, for dichromatic and trichromatic animals, or `plot3d` (requires package `rgl`) for tetrachromatic animals. In addition, `radarplot` plots `Qr` and `E` values into a radar plot. For threshold data, `plot(model)` plots sensitivity values (ln-transformed) per wavelength.
+Models outputs can be easily plotted using the `plot` function, for dichromatic and trichromatic animals, or `plot3d.colourvision` (requires package `rgl`) for tetrachromatic animals. In addition, `radarplot` plots `Qr` and `E` values into a radar plot. For threshold data, `plot(model)` plots sensitivity values (ln-transformed) per wavelength.
 
 ###`plot(model)`
 For dichromatic and trichromatic animals. Plots model specific chromaticity diagrams. For instance:
@@ -542,7 +542,7 @@ For dichromatic and trichromatic animals. Plots model specific chromaticity diag
 @Chittka:1992p128 Hexagon for trichromatic animals:
 <br>
 <br>
-```{r echo=TRUE, fig.cap="Figure 10. @Chittka:1992p128 colour hexagon representing the colour space boundaries of a thrichroamtic animal (*Apis mellifera*). Circles denotes colour locus of simulated reflectance spectra (Figure 7).", fig.align="center", fig.width=3, fig.height=3, dev='svg', out.width='300px'}
+```{r echo=TRUE, fig.cap="Figure 10. @Chittka:1992p128 colour hexagon representing the colour space boundaries of a thrichroamtic animal (*Apis mellifera*). Circles denotes colour locus of simulated reflectance spectra (Figure 7).", fig.align="center", fig.width=3, fig.height=3, out.width='300px'}
 par(mar=c(1,1,1,1))
 colours<-rainbow(n=(ncol(R)-1))
 plot(CTTKmodel3, cex=0.5, col=colours)
@@ -553,7 +553,7 @@ plot(CTTKmodel3, cex=0.5, col=colours)
 @ENDLER:2005p538 adapted to trichromatic animals:
 <br>
 <br>
-```{r echo=TRUE, fig.cap="Figure 11. @ENDLER:2005p538 colour triangle representing the colour space boundaries of a trichromatic animal (*Apis mellifera*). Circles denotes colour locus of simulated reflectance spectra (Figure 7).", fig.align="center", fig.width=3, fig.height=3, dev='svg', out.width='300px'}
+```{r echo=TRUE, fig.cap="Figure 11. @ENDLER:2005p538 colour triangle representing the colour space boundaries of a trichromatic animal (*Apis mellifera*). Circles denotes colour locus of simulated reflectance spectra (Figure 7).", fig.align="center", fig.width=3, fig.height=3, out.width='300px'}
 par(mar=c(1,1,1,1))
 plot(EMmodel3, cex=0.8, col=colours)
 ```
@@ -565,7 +565,7 @@ Colour spaces of receptor noise limited models [@Vorobyev:1998p1813; @Vorobyev:1
 ```{r echo=TRUE}
 par(mar=c(5, 4, 4, 2) + 0.1)
 ```
-```{r echo=TRUE, fig.cap="Figure 12. Receptor Noise Limited Model colour space of a trichromatic animal (*Apis mellifera*). Circles denote colour locus of simulated reflectance spectra (Figure 7). Vectors represent photoreceptor outputs.", fig.align="center", fig.width=4, fig.height=4, dev='svg', out.width='300px'}
+```{r echo=TRUE, fig.cap="Figure 12. Receptor Noise Limited Model colour space of a trichromatic animal (*Apis mellifera*). Circles denote colour locus of simulated reflectance spectra (Figure 7). Vectors represent photoreceptor outputs.", fig.align="center", fig.width=4, fig.height=4, out.width='300px'}
 plot(RNLmodel3, cex=0.8, pch=16, col=colours)
 ```
 
@@ -575,16 +575,16 @@ plot(RNLmodel3, cex=0.8, pch=16, col=colours)
 ###`plot(model)` for threshold values
 Colour thresholds based on receptor noise limited models [@Vorobyev:1998p1813]:
 
-```{r echo=TRUE, fig.cap="Figure 13. Threshold spectral sensitivity of a trichromatic animal (*Apis mellifera*) based on receptor noise (`RNLthres( )` function).", fig.align="center", fig.width=4, fig.height=4, dev='svg', out.width='300px'}
+```{r echo=TRUE, fig.cap="Figure 13. Threshold spectral sensitivity of a trichromatic animal (*Apis mellifera*) based on receptor noise (`RNLthres( )` function).", fig.align="center", fig.width=4, fig.height=4, out.width='300px'}
 plot(thres)
 ```
 
 <br>
 <br>
 
-###`plot3d(model)`
+###`plot3d.colourvision(model)`
 
-For tetrachromatic animals, `plot3d` plots model specific 3D colour spaces. @Chittka:1992p186 model is represented by a hexagonal trapezohedron:
+For tetrachromatic animals, `plot3d.colourvision` plots model specific 3D colour spaces. @Chittka:1992p186 model is represented by a hexagonal trapezohedron:
 <br>
 <br>
 ```{r}
@@ -597,7 +597,7 @@ par3d(windowRect=c(100,100,800,800))
 ```
 ```{r echo=TRUE}
 library(rgl)
-plot3d(CTTKmodel4, s.col = colours, size=4)
+plot3d.colourvision(CTTKmodel4, s.col = colours, size=4)
 ```
 ```{r echo=FALSE}
 rgl.viewpoint(theta = 30, phi = 10, zoom=0.8)
@@ -619,7 +619,7 @@ library(rgl)
 par3d(windowRect=c(100,100,800,800))
 ```
 ```{r echo=TRUE}
-plot3d(EMmodel4, s.col = colours, size=4)
+plot3d.colourvision(EMmodel4, s.col = colours, size=4)
 ```
 ```{r echo=FALSE}
 library(rgl)
@@ -642,7 +642,7 @@ library(rgl)
 par3d(windowRect=c(100,100,800,800))
 ```
 ```{r echo=TRUE}
-plot3d(RNLmodel4, xlab="", ylab="", zlab="", col = colours, size=4)
+plot3d.colourvision(RNLmodel4, xlab="", ylab="", zlab="", col = colours, size=4)
 ```
 ```{r echo=FALSE}
 rgl.viewpoint(theta = 30, phi = 10, zoom=1)
@@ -659,7 +659,7 @@ knitr::include_graphics('./RNLmodel4.png', auto_pdf = FALSE)
 ###`radarplot(model)`
 `radarplot` plots quantum catches or $E$-values into a radar plot.
 
-```{r echo=TRUE, fig.cap="Figure 17. Radar plot representing `CTTKmodel( )` photoreceptor inputs of a pentachromatic animal. Each polygon denotes a reflectance spectrum in Figure 7.", fig.align="center", fig.width=4, fig.height=4, dev='svg', out.width='300px'}
+```{r echo=TRUE, fig.cap="Figure 17. Radar plot representing `CTTKmodel( )` photoreceptor inputs of a pentachromatic animal. Each polygon denotes a reflectance spectrum in Figure 7.", fig.align="center", fig.width=4, fig.height=4, out.width='300px'}
 CTTKmodel5<-CTTKmodel(R=R, I=D65, C=photor(c(350,410,470,530,590),beta.band=FALSE), Rb=Rb)
 radarplot(CTTKmodel5, item="Qr", item.labels=TRUE, border=colours)
 ```
@@ -667,7 +667,7 @@ radarplot(CTTKmodel5, item="Qr", item.labels=TRUE, border=colours)
 <br>
 <br>
 
-```{r echo=TRUE, fig.cap="Figure 18. Radar plot representing `CTTKmodel( )` photoreceptor outputs of a pentachromatic animal. Each polygon denotes a reflectance spectrum in Figure 7.", fig.align="center", fig.width=4, fig.height=4, dev='svg', out.width='300px'}
+```{r echo=TRUE, fig.cap="Figure 18. Radar plot representing `CTTKmodel( )` photoreceptor outputs of a pentachromatic animal. Each polygon denotes a reflectance spectrum in Figure 7.", fig.align="center", fig.width=4, fig.height=4, out.width='300px'}
 radarplot(CTTKmodel5, item="E", item.labels=TRUE, ann=FALSE, xaxt = "n", yaxt = "n", ylim=c(-1.2,1.2), xlim=c(-1.2,1.2), border=colours)
 ```
 

@@ -33,32 +33,3 @@ Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 \seealso{
 \code{\link{plot.colourvision}}, \code{\link{EMtetrahedron}}, \code{\link{CTTKhexagon3D}}, \code{\link{EMmodel}}, \code{\link{CTTKmodel}}, \code{\link{RNLmodel}}
 }
-\examples{
-\dontrun{
-##Photoreceptor sensitivity curves
-C<-photor(lambda.max=c(350,420,490,560))
-
-##Gray background
-Rb <- data.frame(300:700, rep(7, length(300:700)))
-
-## Read CIE D65 standard illuminant
-data("D65")
-
-##Reflectance data
-R1<-logistic(x=seq(300,700,1), x0=500, L=50, k=0.04)
-R1[,2]<-R1[,2]+10
-
-##Run models
-model<-EMmodel(photo=4,
-       R=R1, I=D65, Rb=Rb, C=C)
-plot3d(model)
-
-model<-CTTKmodel(photo=4,
-       R=R1, I=D65, Rb=Rb, C=C)
-plot3d(model)
-
-model<-RNLmodel(photo=4, model="log",
-       R1=R1, I=D65, Rb=Rb, C=C, noise=TRUE, e=c(0.13, 0.06, 0.12, 0.07))
-plot3d(model, ylim=c(-6,6), xlim=c(-6,6))
-}
-}

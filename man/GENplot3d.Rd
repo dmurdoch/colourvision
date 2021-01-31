@@ -18,14 +18,14 @@ GENplot3d(model, col.names=c("X1","X2","X3"),
   \item{vectors}{Whether vectors representing direction of photoreceptor outputs should be plotted.}
   \item{vnames}{Whether vector names should be plotted.}
   \item{vsize}{Length of vectors to be plotted. Default calculates length automatically.}
-  \item{xlab}{see \code{\link{par3d}} function.}
-  \item{ylab}{see \code{\link{par3d}} function.}
-  \item{zlab}{see \code{\link{par3d}} function.}
-  \item{xlim}{x-axis range. Default calculates range automatically. See \code{\link{par3d}} function.}
-  \item{ylim}{y-axis range. Default calculates range automatically. See \code{\link{par3d}} function.}
-  \item{zlim}{z-axis range. Default calculates range automatically. See \code{\link{par3d}} function.}
-  \item{asp}{see \code{\link{plot3d}} function.}
-  \item{...}{Other arguments passed to \code{\link{plot3d}} function.}
+  \item{xlab}{see par3d function in the rgl package.}
+  \item{ylab}{see par3d function in the rgl package.}
+  \item{zlab}{see par3d function in the rgl package.}
+  \item{xlim}{x-axis range. Default calculates range automatically. See par3d function in the rgl package.}
+  \item{ylim}{y-axis range. Default calculates range automatically. See par3d function in the rgl package.}
+  \item{zlim}{z-axis range. Default calculates range automatically. See par3d function in the rgl package.}
+  \item{asp}{see plot3d function in the rgl package.}
+  \item{...}{Other arguments passed to function plot3d in the rgl package.}
 }
 \author{
 Felipe M. Gawryszewski \email{f.gawry@gmail.com}

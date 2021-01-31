@@ -53,7 +53,7 @@ Noise-to-signal ratio of a single photoreceptor. Used to calculate \code{e} when
 Whether data files should be interpolated before further calculations. See \code{\link{approx}}.}
   \item{nm}{
 A sequence of numeric values specifying where interpolation is to take place. See \code{\link{approx}}.}
-  \item{coord}{Whether colour locous coordinates should be calculated by the method (\code{coord="colourvision"}) by Gawryszewski (under review), or by alternative (\code{coord="alternative"}; available for 2-4 photoreceptor types only) methods (Hempel de Ibarra et al. 2001; Renoult et al. 2017).}
+  \item{coord}{Whether colour locous coordinates should be calculated by the method (\code{coord="colourvision"}) by Gawryszewski (2018), or by alternative (\code{coord="alternative"}; available for 2-4 photoreceptor types only) methods (Hempel de Ibarra et al. 2001; Renoult et al. 2017).}
 
 }
 \value{
@@ -75,6 +75,8 @@ In lack of a direct measurement, receptor noise (\eqn{e_i}{ei}) can be estimated
 where \eqn{\nu}{v} is the noise-to-signal ratio of a single photoreceptor, and \eqn{\eta}{n} is the relative abundance of photoreceptor i in the retina. Alternatively, noise may be dependent of the intensity, but this possibility is not implement in \code{colourvision} yet. Noise dependent of intensity usually holds for low light conditions only (Vorobyev et al. 1998). 
 }
 \references{
+Gawryszewski, F.M. 2018. Colour vision models: Some simulations, a general n-dimensional model, and the colourvision R package. Ecology and Evolution, 10.1002/ece3.4288.
+
 Hempel de Ibarra, N., M. Giurfa, and M. Vorobyev. 2001. Detection of coloured patterns by honeybees through chromatic and achromatic cues. J Comp Physiol A 187:215-224.
 
 Renoult, J. P., A. Kelber, and H. M. Schaefer. 2017. Colour spaces in ecology and evolutionary biology. Biol Rev Camb Philos Soc, doi: 10.1111/brv.12230

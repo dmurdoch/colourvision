@@ -645,7 +645,6 @@ RNLmodel <- function (model = c("linear", "log"), photo=ncol(C)-1,
 }
 
 
-
 CTTKmodel <- function (photo=ncol(C)-1,
                   R,
                   I,
@@ -808,110 +807,120 @@ CTTKhexagon3D<- function (x, y, z, s.col = "red", f.col = "black", vnames = c("E
                           box = F, axes = F, ylim = c(-1, 1), xlim = c(-1, 1),
                           zlim = c(-1,1), aspect = T, vectors=F, ...) 
 {
-  requireNamespace("rgl")
-  rgl::plot3d(x = x, y = y, z = z, col = s.col, type = type, 
-              add = add, xlab = xlab, ylab = ylab, zlab = zlab, box = box, axes = axes, 
-              radius = radius, ylim = ylim, xlim = xlim, zlim = zlim, aspect = aspect, ...)
-  E4 <- c(-0.8164966, -0.3333333, 0.4714045)
-  E3 <- c(0.8164966, -0.3333333, 0.4714045)
-  E2 <- c(0, -0.3333333, -0.942809)
-  E1 <- c(0, 1, 0)
-  if (vectors == TRUE) {
-    rgl::arrow3d(p0=c(0,0,0),p1=E1, width = 1/3, s=1/6)
-    rgl::arrow3d(p0=c(0,0,0),p1=E2, width = 1/3, s=1/6)
-    rgl::arrow3d(p0=c(0,0,0),p1=E3, width = 1/3, s=1/6)
-    rgl::arrow3d(p0=c(0,0,0),p1=E4, width = 1/3, s=1/6)
-  }
   
-  x.vertex <- c(0, 0, 0.8164966, 0.8164966, -0.8164966, -0.8164966, 
-                0, 0, 0, 0.8164966, 0.8164966, -0.8164966, -0.8164966, 
-                0)
-  y.vertex <- c(1, -0.3333333, -0.3333333, 0.3333333, 0.3333333, 
-                -0.3333333, 0.3333333, -1, 0.6666667, 0.6666667, -0.6666667, 
-                0.6666667, -0.6666667, -0.6666667)
-  z.vertex <- c(0, -0.942809, 0.4714045, -0.4714045, -0.4714045, 
-                0.4714045, 0.942809, 0, -0.942809, 0.4714045, -0.4714045, 
-                0.4714045, -0.4714045, 0.942809)
-  rgl::plot3d(x = x.vertex[c(1, 10)], y = y.vertex[c(1, 10)], 
-              z = z.vertex[c(1, 10)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(1, 9)], y = y.vertex[c(1, 9)], 
-              z = z.vertex[c(1, 9)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(1, 12)], y = y.vertex[c(1, 12)], 
-              z = z.vertex[c(1, 12)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(5, 9)], y = y.vertex[c(5, 9)], 
-              z = z.vertex[c(5, 9)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(5, 12)], y = y.vertex[c(5, 12)], 
-              z = z.vertex[c(5, 12)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(6, 12)], y = y.vertex[c(6, 12)], 
-              z = z.vertex[c(6, 12)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(7, 12)], y = y.vertex[c(7, 12)], 
-              z = z.vertex[c(7, 12)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(7, 10)], y = y.vertex[c(7, 10)], 
-              z = z.vertex[c(7, 10)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(7, 14)], y = y.vertex[c(7, 14)], 
-              z = z.vertex[c(7, 14)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(3, 10)], y = y.vertex[c(3, 10)], 
-              z = z.vertex[c(3, 10)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(3, 14)], y = y.vertex[c(3, 14)], 
-              z = z.vertex[c(3, 14)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(6, 14)], y = y.vertex[c(6, 14)], 
-              z = z.vertex[c(6, 14)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(8, 14)], y = y.vertex[c(8, 14)], 
-              z = z.vertex[c(8, 14)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(8, 13)], y = y.vertex[c(8, 13)], 
-              z = z.vertex[c(8, 13)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(8, 11)], y = y.vertex[c(8, 11)], 
-              z = z.vertex[c(8, 11)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(5, 13)], y = y.vertex[c(5, 13)], 
-              z = z.vertex[c(5, 13)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(2, 9)], y = y.vertex[c(2, 9)], 
-              z = z.vertex[c(2, 9)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(2, 11)], y = y.vertex[c(2, 11)], 
-              z = z.vertex[c(2, 11)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(4, 11)], y = y.vertex[c(4, 11)], 
-              z = z.vertex[c(4, 11)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(4, 9)], y = y.vertex[c(4, 9)], 
-              z = z.vertex[c(4, 9)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(4, 10)], y = y.vertex[c(4, 10)], 
-              z = z.vertex[c(4, 10)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(2, 13)], y = y.vertex[c(2, 13)], 
-              z = z.vertex[c(2, 13)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(6, 13)], y = y.vertex[c(6, 13)], 
-              z = z.vertex[c(6, 13)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::plot3d(x = x.vertex[c(3, 11)], y = y.vertex[c(3, 11)], 
-              z = z.vertex[c(3, 11)], col = f.col, type = "l", add = T, 
-              lwd = 1)
-  rgl::text3d(x = E1[[1]], y = E1[[2]], z = E1[[3]], texts = vnames[[1]], 
+  if (requireNamespace("rgl", quietly = TRUE)) {
+    
+    
+    rgl::plot3d(x = x, y = y, z = z, col = s.col, type = type, 
+                add = add, xlab = xlab, ylab = ylab, zlab = zlab, box = box, axes = axes, 
+                radius = radius, ylim = ylim, xlim = xlim, zlim = zlim, aspect = aspect, ...)
+    E4 <- c(-0.8164966, -0.3333333, 0.4714045)
+    E3 <- c(0.8164966, -0.3333333, 0.4714045)
+    E2 <- c(0, -0.3333333, -0.942809)
+    E1 <- c(0, 1, 0)
+    if (vectors == TRUE) {
+      rgl::arrow3d(p0=c(0,0,0),p1=E1, width = 1/3, s=1/6)
+      rgl::arrow3d(p0=c(0,0,0),p1=E2, width = 1/3, s=1/6)
+      rgl::arrow3d(p0=c(0,0,0),p1=E3, width = 1/3, s=1/6)
+      rgl::arrow3d(p0=c(0,0,0),p1=E4, width = 1/3, s=1/6)
+    }
+    
+    x.vertex <- c(0, 0, 0.8164966, 0.8164966, -0.8164966, -0.8164966, 
+                  0, 0, 0, 0.8164966, 0.8164966, -0.8164966, -0.8164966, 
+                  0)
+    y.vertex <- c(1, -0.3333333, -0.3333333, 0.3333333, 0.3333333, 
+                  -0.3333333, 0.3333333, -1, 0.6666667, 0.6666667, -0.6666667, 
+                  0.6666667, -0.6666667, -0.6666667)
+    z.vertex <- c(0, -0.942809, 0.4714045, -0.4714045, -0.4714045, 
+                  0.4714045, 0.942809, 0, -0.942809, 0.4714045, -0.4714045, 
+                  0.4714045, -0.4714045, 0.942809)
+    rgl::plot3d(x = x.vertex[c(1, 10)], y = y.vertex[c(1, 10)], 
+                z = z.vertex[c(1, 10)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(1, 9)], y = y.vertex[c(1, 9)], 
+                z = z.vertex[c(1, 9)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(1, 12)], y = y.vertex[c(1, 12)], 
+                z = z.vertex[c(1, 12)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(5, 9)], y = y.vertex[c(5, 9)], 
+                z = z.vertex[c(5, 9)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(5, 12)], y = y.vertex[c(5, 12)], 
+                z = z.vertex[c(5, 12)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(6, 12)], y = y.vertex[c(6, 12)], 
+                z = z.vertex[c(6, 12)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(7, 12)], y = y.vertex[c(7, 12)], 
+                z = z.vertex[c(7, 12)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(7, 10)], y = y.vertex[c(7, 10)], 
+                z = z.vertex[c(7, 10)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(7, 14)], y = y.vertex[c(7, 14)], 
+                z = z.vertex[c(7, 14)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(3, 10)], y = y.vertex[c(3, 10)], 
+                z = z.vertex[c(3, 10)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(3, 14)], y = y.vertex[c(3, 14)], 
+                z = z.vertex[c(3, 14)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(6, 14)], y = y.vertex[c(6, 14)], 
+                z = z.vertex[c(6, 14)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(8, 14)], y = y.vertex[c(8, 14)], 
+                z = z.vertex[c(8, 14)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(8, 13)], y = y.vertex[c(8, 13)], 
+                z = z.vertex[c(8, 13)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(8, 11)], y = y.vertex[c(8, 11)], 
+                z = z.vertex[c(8, 11)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(5, 13)], y = y.vertex[c(5, 13)], 
+                z = z.vertex[c(5, 13)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(2, 9)], y = y.vertex[c(2, 9)], 
+                z = z.vertex[c(2, 9)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(2, 11)], y = y.vertex[c(2, 11)], 
+                z = z.vertex[c(2, 11)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(4, 11)], y = y.vertex[c(4, 11)], 
+                z = z.vertex[c(4, 11)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(4, 9)], y = y.vertex[c(4, 9)], 
+                z = z.vertex[c(4, 9)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(4, 10)], y = y.vertex[c(4, 10)], 
+                z = z.vertex[c(4, 10)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(2, 13)], y = y.vertex[c(2, 13)], 
+                z = z.vertex[c(2, 13)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(6, 13)], y = y.vertex[c(6, 13)], 
+                z = z.vertex[c(6, 13)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::plot3d(x = x.vertex[c(3, 11)], y = y.vertex[c(3, 11)], 
+                z = z.vertex[c(3, 11)], col = f.col, type = "l", add = T, 
+                lwd = 1)
+    rgl::text3d(x = E1[[1]], y = E1[[2]], z = E1[[3]], texts = vnames[[1]], 
                 cex = 0.75, adj = c(1, 1))
-  rgl::text3d(x = E2[[1]], y = E2[[2]], z = E2[[3]], texts = vnames[[2]], 
+    rgl::text3d(x = E2[[1]], y = E2[[2]], z = E2[[3]], texts = vnames[[2]], 
                 cex = 0.75, adj = c(1, 1))
-  rgl::text3d(x = E3[[1]], y = E3[[2]], z = E3[[3]], texts = vnames[[3]], 
+    rgl::text3d(x = E3[[1]], y = E3[[2]], z = E3[[3]], texts = vnames[[3]], 
                 cex = 0.75, adj = c(1, 1))
-  rgl::text3d(x = E4[[1]], y = E4[[2]], z = E4[[3]], texts = vnames[[4]], 
+    rgl::text3d(x = E4[[1]], y = E4[[2]], z = E4[[3]], texts = vnames[[4]], 
                 cex = 0.75, adj = c(1, 1))
+    
+    
+    
+  } else {
+    stop("You need to install rgl to use this function", 
+         call. = FALSE)
+  }
 }
 
 
@@ -997,6 +1006,9 @@ EMtetrahedron <- function (x, y, z, s.col = "red", f.col = "black", vnames = c("
                            box = F, axes = F, ylim = c(-0.75, 0.75), xlim = c(-0.75, 0.75),
                            zlim = c(-0.75, 0.75), aspect = T, mar = c(1, 1, 1, 1), vectors=FALSE, ...) 
 {
+  
+  if (requireNamespace("rgl", quietly = TRUE)) {
+  
   rgl::rgl.viewpoint(zoom = 0.75)
   rgl::plot3d(x = x, y = y, z = z, col = s.col, type = type, 
               add = add, xlab = xlab, ylab = ylab, zlab = zlab, box = box, axes = axes, 
@@ -1056,6 +1068,10 @@ EMtetrahedron <- function (x, y, z, s.col = "red", f.col = "black", vnames = c("
     rgl::arrow3d(p0=c(0,0,0),p1=smu(0, 0, 0, 1), width = 1/3, s=1/6)
   }
   
+  } else {
+    stop("You need to install rgl to use this function", 
+         call. = FALSE)
+  }
 }
 
 
@@ -1185,7 +1201,7 @@ plot.colourvision <- function (x, ...) {
   model<-attributes(x)$model_name
   
   if(photo1==4 && model!="RNL Threshold")
-    {stop("For a 3D plot use 'plot3d'.")}
+    {stop("For a 3D plot use 'plot3d.colourvision'.")}
   if(photo1>4  && model!="RNL Threshold")
     {stop("Plotting is not available for > 3-dimentions.")}
   if (model=="Colour hexagon model") {
@@ -1225,7 +1241,7 @@ RNLplot<-function(model, photo, item="R1",
   if(item=="R1"){col.names<-c("X1_R1","X2_R1")}
   if(item=="R2"){col.names<-c("X1_R2","X2_R2")}
   if (attributes(model)$coord!="colourvision" && vectors==TRUE) {
-    warning("Vector plotting is available only for colour locus coordinates calculted by Gawryszewski (2017) method.")
+    warning("Vector plotting is available only for colour locus coordinates calculted by Gawryszewski (2018) method.")
     vectors<-FALSE
     vnames<-FALSE
   }
@@ -1313,7 +1329,7 @@ RNLplot3d<-function(model, item="R1",
   if(item=="R1"){col.names<-c("X1_R1","X2_R1","X3_R1")}
   if(item=="R2"){col.names<-c("X1_R2","X2_R2","X3_R2")}
   if (attributes(model)$coord!="colourvision" && vectors==TRUE) {
-    warning("Vector plotting is available only for colour locus coordinates calculted by Gawryszewski (2017) method.")
+    warning("Vector plotting is available only for colour locus coordinates calculted by Gawryszewski (2018) method.")
     vectors<-FALSE
     vnames<-FALSE
   }
@@ -1329,6 +1345,9 @@ GENplot3d<-function(model, col.names=c("X1","X2","X3"),
                     vectors=TRUE, vnames=TRUE, vsize="auto",
                     xlab="x", ylab="y", zlab="z",
                     xlim="auto", ylim="auto", zlim="auto", asp=1, ...) {
+  
+  if (requireNamespace("rgl", quietly = TRUE)) {
+  
   x<-model
   X1<-x[,col.names[[1]]]
   X2<-x[,col.names[[2]]]
@@ -1390,6 +1409,12 @@ GENplot3d<-function(model, col.names=c("X1","X2","X3"),
                 cex = 0.75, adj = c(1, 1))
     
   }
+  
+  } else {
+    stop("You need to install rgl to use this function", 
+         call. = FALSE)
+  }
+
 }
 
 plot3d.colourvision <- function (x, ...) {

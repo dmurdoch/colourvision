@@ -17,24 +17,24 @@ EMtetrahedron(x, y, z, s.col = "red", f.col = "black",
   \item{x}{x coordinate of points to be plotted}
   \item{y}{y coordinate of points to be plotted}
   \item{z}{z coordinate of points to be plotted}
-  \item{s.col}{Colour to be used for plotted items. See \code{\link{plot3d}}.}
-  \item{f.col}{Colour of tetrahedron lines. See \code{\link{plot3d}}.}
+  \item{s.col}{Colour to be used for plotted items. See plot3d in the rgl package.}
+  \item{f.col}{Colour of tetrahedron lines. See plot3d in the rgl package.}
   \item{vnames}{Vector names.}
-  \item{type}{see \code{\link{plot3d}} function.}
-  \item{radius}{see \code{\link{plot3d}} function.}
-  \item{add}{see \code{\link{plot3d}} function.}
-  \item{xlab}{see \code{\link{plot3d}} function.}
-  \item{ylab}{see \code{\link{plot3d}} function.}
-  \item{zlab}{see \code{\link{plot3d}} function.}
-  \item{box}{see \code{\link{plot3d}} function.}
-  \item{axes}{see \code{\link{plot3d}} function.}
-  \item{ylim}{see \code{\link{plot3d}} function.}
-  \item{xlim}{see \code{\link{plot3d}} function.}
-  \item{zlim}{see \code{\link{plot3d}} function.}
-  \item{aspect}{see \code{\link{plot3d}} function.}
-  \item{mar}{see \code{\link{plot3d}} function.}
+  \item{type}{see plot3d function in the rgl package.}
+  \item{radius}{see plot3d function in the rgl package.}
+  \item{add}{see plot3d function in the rgl package.}
+  \item{xlab}{see plot3d function in the rgl package.}
+  \item{ylab}{see plot3d function in the rgl package.}
+  \item{zlab}{see plot3d function in the rgl package.}
+  \item{box}{see plot3d function in the rgl package.}
+  \item{axes}{see plot3d function in the rgl package.}
+  \item{ylim}{see plot3d function in the rgl package.}
+  \item{xlim}{see plot3d function in the rgl package.}
+  \item{zlim}{see plot3d function in the rgl package.}
+  \item{aspect}{see plot3d function in the rgl package.}
+  \item{mar}{see plot3d function in the rgl package.}
   \item{vectors}{Whether vectors representing direction of photoreceptor outputs should be plotted.}
-  \item{...}{Other arguments passed to function \code{\link{plot3d}}.}
+  \item{...}{Other arguments passed to function plot3d in the rgl package.}
 }
 \references{
 Endler, J. A., and P. Mielke. 2005. Comparing entire colour patterns as birds see them. Biol J Linn Soc 86:405-431.
@@ -44,10 +44,4 @@ Felipe M. Gawryszewski \email{f.gawry@gmail.com}
 }
 \seealso{
 \code{\link{EMtriangle}}, \code{\link{EMmodel}}
-}
-\examples{
-\dontrun{
-library(rgl)
-EMtetrahedron(x=0,y=0,z=0)
-}
 }
