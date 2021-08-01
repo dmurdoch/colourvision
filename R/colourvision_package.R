@@ -1004,7 +1004,7 @@ EMtetrahedron <- function (x, y, z, s.col = "red", f.col = "black", vnames = c("
                            type = "p", radius = 0.01, 
                            add = F, xlab = "", ylab = "", zlab = "",
                            box = F, axes = F, ylim = c(-0.75, 0.75), xlim = c(-0.75, 0.75),
-                           zlim = c(-0.75, 0.75), aspect = T, mar = c(1, 1, 1, 1), vectors=FALSE, ...) 
+                           zlim = c(-0.75, 0.75), aspect = T, vectors=FALSE, ...) 
 {
   
   if (requireNamespace("rgl", quietly = TRUE)) {
@@ -1013,7 +1013,7 @@ EMtetrahedron <- function (x, y, z, s.col = "red", f.col = "black", vnames = c("
   rgl::plot3d(x = x, y = y, z = z, col = s.col, type = type, 
               add = add, xlab = xlab, ylab = ylab, zlab = zlab, box = box, axes = axes, 
               radius = radius, ylim = ylim, xlim = xlim,
-              zlim = zlim, aspect = aspect, mar = mar, ...)
+              zlim = zlim, aspect = aspect, ...)
   
   smu <- function(s, m, u, l) {
     x <- ((1 - 2 * s - m - u)/2) * sqrt(3/2)
@@ -1430,7 +1430,7 @@ plot3d.colourvision <- function (x, ...) {
   }
   if (model=="Endler and Mielke model") {
     if (photo1==4) {
-      EMtetrahedron(x=x[,"X1"],y=x[,"X2"], z=x[,"X3"], ...)
+      EMtetrahedron(x=x[,"X1"], y=x[,"X2"], z=x[,"X3"], ...)
     }
   }
   

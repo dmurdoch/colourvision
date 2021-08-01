@@ -10,8 +10,7 @@ EMtetrahedron(x, y, z, s.col = "red", f.col = "black",
               radius = 0.01, add = F, xlab = "",
               ylab = "", zlab = "", box = F, axes = F,
               ylim = c(-0.75, 0.75), xlim = c(-0.75, 0.75),
-              zlim = c(-0.75, 0.75), aspect = T,
-              mar = c(1, 1, 1, 1), vectors=FALSE, ...)
+              zlim = c(-0.75, 0.75), aspect = T, vectors=FALSE, ...)
 }
 \arguments{
   \item{x}{x coordinate of points to be plotted}
@@ -32,7 +31,6 @@ EMtetrahedron(x, y, z, s.col = "red", f.col = "black",
   \item{xlim}{see plot3d function in the rgl package.}
   \item{zlim}{see plot3d function in the rgl package.}
   \item{aspect}{see plot3d function in the rgl package.}
-  \item{mar}{see plot3d function in the rgl package.}
   \item{vectors}{Whether vectors representing direction of photoreceptor outputs should be plotted.}
   \item{...}{Other arguments passed to function plot3d in the rgl package.}
 }

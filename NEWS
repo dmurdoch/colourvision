@@ -1,3 +1,9 @@
+colourvision v2.0.4
+=================
+1. Fixed a minor bug with 'mar' argument in the EMtetrahedron function.
+2. rgl package not mandatory for colourvision instalation.
+
+
 colourvision v2.0.3
 =================
 1. Minor changes in description of functions and in package vignette.
